@@ -1,11 +1,9 @@
-import { Login } from "../components/Login";
-import { Register } from "../components/Register";
+import { RegisterOrLogin } from "../components/RegisterOrLogin";
 
-export const LoginView = () => {
+export const LoginView = ({ isRegistered }) => {
   return (
     <div>
-      <Login />
-      <Register />
+      <RegisterOrLogin isRegistered={isRegistered} />
     </div>
   );
 };

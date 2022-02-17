@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { registerUserWithEmail } from "../utils/db";
+import { useNavigate } from "react-router-dom";
+import { loginUserWithEmail, registerUserWithEmail } from "../utils/db";
 import s from "./RegisterOrLogin.module.css";
 export const RegisterOrLogin = ({ isRegistered }) => {
   const [name, setName] = useState("");
@@ -7,27 +8,47 @@ export const RegisterOrLogin = ({ isRegistered }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+  const handleSubmitRegister = (e) => {
     e.preventDefault();
     registerUserWithEmail(name, lastName, email, password);
     setName("");
     setLastName("");
     setEmail("");
     setPassword("");
+    navigate("/panel");
+  };
+  const handleSubmitLogin = (e) => {
+    e.preventDefault();
+    loginUserWithEmail(email, password);
+    setName("");
+    setLastName("");
+    setEmail("");
+    setPassword("");
+    navigate("/panel");
   };
   return (
     <div>
+      {" "}
       {isRegistered ? (
         <div>
           Login
-          <form className={s.form}>
+          <form className={s.form} onSubmit={handleSubmitLogin}>
             <label>
               Email
-              <input type="email"></input>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              ></input>
             </label>
             <label>
               Password
-              <input type="password"></input>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              ></input>
             </label>
             <button type="submit">Login</button>
           </form>
@@ -35,7 +56,7 @@ export const RegisterOrLogin = ({ isRegistered }) => {
       ) : (
         <div>
           Register
-          <form className={s.form} onSubmit={handleSubmit}>
+          <form className={s.form} onSubmit={handleSubmitRegister}>
             <label>
               Name
               <input

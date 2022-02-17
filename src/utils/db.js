@@ -1,6 +1,11 @@
 import { initializeApp } from "firebase/app";
-import { addDoc, collection, getFirestore } from "firebase/firestore";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { doc, getFirestore, setDoc } from "firebase/firestore";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
 const firebaseConfig = {
   apiKey: "AIzaSyBjrWuN8L0egMG4y2qhzMi4TAxuSbRCD14",
   authDomain: "interview-helper-ih.firebaseapp.com",
@@ -18,8 +23,7 @@ const registerUserWithEmail = async (name, lastName, email, password) => {
   const response = await createUserWithEmailAndPassword(auth, email, password);
   const user = response.user;
 
-  await addDoc(collection(db, "users"), {
-    auid: user.uid,
+  await setDoc(doc(db, "users", user.uid), {
     name,
     lastName,
     authProvider: "local",
@@ -27,4 +31,14 @@ const registerUserWithEmail = async (name, lastName, email, password) => {
   });
 };
 
-export { db, auth, registerUserWithEmail };
+const loginUserWithEmail = async (email, password) => {
+  await signInWithEmailAndPassword(auth, email, password)
+    .then((response) => console.log(response))
+    .catch((error) => console.log(error));
+};
+
+const logoutUser = () => {
+  signOut(auth);
+};
+
+export { db, auth, registerUserWithEmail, loginUserWithEmail, logoutUser };

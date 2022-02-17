@@ -1,0 +1,15 @@
+body {
+  font-family: "Karla", "sans-serif";
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+  position: relative;
+  min-height: 100vh;
+}
+.app {
+  background-image: url("/src/images/hero.jpg");
+  background-position: center;
+  object-fit: cover;
+  opacity: 0.5;
+}

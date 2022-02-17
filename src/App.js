@@ -4,7 +4,8 @@ import { HomeView } from "./views/HomeView";
 import { LoginView } from "./views/LoginView";
 import { RecruiterPanelView } from "./views/RecruiterPanelView";
 import { auth, logoutUser } from "./utils/db";
-
+import { Navbar } from "./components/Navbar";
+import s from "./App.module.css";
 function App() {
   const [isRegistered, setIsRegistered] = useState("");
   const [currentUser, setCurrentUser] = useState(null);
@@ -14,22 +15,28 @@ function App() {
   console.log(currentUser);
 
   return (
-    <div>
+    <div className={s.app}>
       <BrowserRouter>
+        {/* <Navbar setIsRegistered={setIsRegistered} currentUser={currentUser} /> */}
         <Routes>
           <Route
             path="/"
             element={
-              currentUser ? (
-                <button onClick={() => logoutUser()}>Wyloguj</button>
-              ) : (
-                <HomeView setIsRegistered={setIsRegistered} />
-              )
+              <HomeView
+                setIsRegistered={setIsRegistered}
+                currentUser={currentUser}
+              />
             }
           />
           <Route
             path="login"
-            element={<LoginView isRegistered={isRegistered} />}
+            element={
+              <LoginView
+                isRegistered={isRegistered}
+                setIsRegistered={setIsRegistered}
+                currentUser={currentUser}
+              />
+            }
           />
           <Route path="panel" element={<RecruiterPanelView />} />
         </Routes>

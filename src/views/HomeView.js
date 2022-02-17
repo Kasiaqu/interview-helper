@@ -1,15 +1,11 @@
-import { useNavigate } from "react-router-dom";
-export const HomeView = ({ setIsRegistered }) => {
-  const navigate = useNavigate();
-  const registerOrLogin = (a) => {
-    setIsRegistered(a);
-    navigate("/login");
-  };
+import { Navbar } from "../components/Navbar";
+import img from "../images/hero.jpg";
+import s from "./HomeView.module.css";
+export const HomeView = ({ setIsRegistered, currentUser }) => {
   return (
-    <div>
-      Home View
-      <button onClick={() => registerOrLogin(false)}>Register</button>
-      <button onClick={() => registerOrLogin(true)}>Login</button>
+    <div className={s.homeView}>
+      Home View M
+      <Navbar setIsRegistered={setIsRegistered} currentUser={currentUser} />
     </div>
   );
 };

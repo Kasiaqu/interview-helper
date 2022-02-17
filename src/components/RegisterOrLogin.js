@@ -28,8 +28,7 @@ export const RegisterOrLogin = ({ isRegistered }) => {
     navigate("/panel");
   };
   return (
-    <div>
-      {" "}
+    <div className={s.RegisterOrLogin}>
       {isRegistered ? (
         <div>
           Login

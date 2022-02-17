@@ -1,0 +1,11 @@
+.candidateInfo {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+}
+.candidateCounter {
+  padding: 50px;
+  background-color: lightgrey;
+  opacity: 0.9;
+  margin: 50px;
+}

@@ -3,8 +3,7 @@ import { CandidateCounter } from "../../components/CandidateCounter/CandidateCou
 import { getCandidates } from "../../utils/db";
 import s from "./RecruiterPanelView.module.css";
 
-export const RecruiterPanelView = () => {
-  const [candidates, setCandidates] = useState([]);
+export const RecruiterPanelView = ({ candidates, setCandidates }) => {
   useEffect(() => {
     getCandidates(setCandidates);
   }, []);

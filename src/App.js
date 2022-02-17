@@ -5,9 +5,12 @@ import { RegisterOrLoginView } from "./views/RegisterOrLoginView/RegisterOrLogin
 import { RecruiterPanelView } from "./views/RecruiterPanelView/RecruiterPanelView";
 import { auth, logoutUser } from "./utils/db";
 import s from "./App.module.css";
+import { CandidateInfo } from "./components/CandidateInfo/CandidateInfo";
 function App() {
   const [isRegistered, setIsRegistered] = useState("");
   const [currentUser, setCurrentUser] = useState(null);
+  const [candidates, setCandidates] = useState([]);
+
   useEffect(() => {
     return auth.onAuthStateChanged(setCurrentUser);
   }, []);
@@ -29,7 +32,19 @@ function App() {
             path="login"
             element={<RegisterOrLoginView isRegistered={isRegistered} />}
           />
-          <Route path="panel" element={<RecruiterPanelView />} />
+          <Route
+            path="panel"
+            element={
+              <RecruiterPanelView
+                candidates={candidates}
+                setCandidates={setCandidates}
+              />
+            }
+          />
+          <Route
+            path="panel/user/:candidateId"
+            element={<CandidateInfo candidates={candidates} />}
+          />
         </Routes>
       </BrowserRouter>
     </div>

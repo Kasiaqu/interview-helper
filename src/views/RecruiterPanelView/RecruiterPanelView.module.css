@@ -16,11 +16,3 @@
   width: 300px;
   margin: 10px;
 }
-.candidateCounter {
-  background-color: lightgray;
-  opacity: 0.9;
-  padding: 10px 50px;
-  margin: 20px 50px;
-  display: flex;
-  justify-content: space-between;
-}

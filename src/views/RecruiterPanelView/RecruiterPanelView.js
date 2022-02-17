@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { CandidateCounter } from "../../components/CandidateCounter/CandidateCounter";
 import { getCandidates } from "../../utils/db";
 import s from "./RecruiterPanelView.module.css";
 
@@ -16,21 +17,7 @@ export const RecruiterPanelView = () => {
         <button>Add a new candidate</button>
       </div>
       {candidates.map((candidate) => {
-        return (
-          <div key={candidate.id} className={s.candidateCounter}>
-            <div>
-              <p>
-                {candidate.name} {candidate.lastName}
-              </p>
-            </div>
-            <div>
-              {" "}
-              <p>{candidate.skills.map((skill) => skill + ", ")}</p>
-            </div>
-
-            <button>See more information</button>
-          </div>
-        );
+        return <CandidateCounter key={candidate.id} candidate={candidate} />;
       })}
     </div>
   );

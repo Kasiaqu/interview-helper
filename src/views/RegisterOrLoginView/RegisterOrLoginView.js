@@ -32,7 +32,6 @@ export const RegisterOrLoginView = ({ isRegistered }) => {
       <button onClick={() => navigate("/")}>Come back to home page</button>
       {isRegistered ? (
         <div>
-          Login
           <form className={s.form} onSubmit={handleSubmitLogin}>
             <label>
               Email
@@ -55,7 +54,6 @@ export const RegisterOrLoginView = ({ isRegistered }) => {
         </div>
       ) : (
         <div>
-          Register
           <form className={s.form} onSubmit={handleSubmitRegister}>
             <label>
               Name

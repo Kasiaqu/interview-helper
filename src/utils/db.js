@@ -1,5 +1,11 @@
 import { initializeApp } from "firebase/app";
-import { doc, getFirestore, setDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDocs,
+  getFirestore,
+  setDoc,
+} from "firebase/firestore";
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -41,4 +47,25 @@ const logoutUser = () => {
   signOut(auth);
 };
 
-export { db, auth, registerUserWithEmail, loginUserWithEmail, logoutUser };
+const getCandidates = async (callback) => {
+  const candidatesCollection = collection(db, "candidates");
+  const candidatesDocuments = await getDocs(candidatesCollection);
+  const candidatesList = candidatesDocuments.docs.map((doc) => ({
+    id: doc.id,
+    name: doc.data().name,
+    lastName: doc.data()["last name"],
+    dateOfBirth: doc.data()["date of birth"],
+    bio: doc.data().bio,
+    skills: doc.data().skills,
+  }));
+  callback(candidatesList);
+};
+
+export {
+  db,
+  auth,
+  registerUserWithEmail,
+  loginUserWithEmail,
+  logoutUser,
+  getCandidates,
+};

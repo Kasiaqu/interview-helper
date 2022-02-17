@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { logoutUser } from "../utils/db";
+import { logoutUser } from "../../utils/db";
 import s from "./NavBar.module.css";
 
 export const Navbar = ({ setIsRegistered, currentUser }) => {

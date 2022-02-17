@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginUserWithEmail, registerUserWithEmail } from "../utils/db";
-import s from "./RegisterOrLogin.module.css";
-export const RegisterOrLogin = ({ isRegistered }) => {
+import { loginUserWithEmail, registerUserWithEmail } from "../../utils/db";
+import s from "./RegisterOrLoginView.module.css";
+
+export const RegisterOrLoginView = ({ isRegistered }) => {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -16,7 +17,6 @@ export const RegisterOrLogin = ({ isRegistered }) => {
     setLastName("");
     setEmail("");
     setPassword("");
-    navigate("/panel");
   };
   const handleSubmitLogin = (e) => {
     e.preventDefault();
@@ -29,6 +29,7 @@ export const RegisterOrLogin = ({ isRegistered }) => {
   };
   return (
     <div className={s.RegisterOrLogin}>
+      <button onClick={() => navigate("/")}>Come back to home page</button>
       {isRegistered ? (
         <div>
           Login

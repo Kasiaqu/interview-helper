@@ -1,4 +1,4 @@
-import { RecruiterPanel } from "../components/RecruiterPanel";
+import { RecruiterPanel } from "../../components/RecruiterPanel/RecruiterPanel";
 
 export const RecruiterPanelView = () => {
   return (

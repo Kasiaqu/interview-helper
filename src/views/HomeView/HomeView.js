@@ -1,5 +1,4 @@
-import { Navbar } from "../components/Navbar";
-import img from "../images/hero.jpg";
+import { Navbar } from "../../components/NavBar/NavBar";
 import s from "./HomeView.module.css";
 export const HomeView = ({ setIsRegistered, currentUser }) => {
   return (

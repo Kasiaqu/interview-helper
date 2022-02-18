@@ -61,6 +61,15 @@ const getCandidates = async (callback) => {
   callback(candidatesList);
 };
 
+const getQuestions = async (callback) => {
+  const questionsCollection = collection(db, "skills");
+  const questionsDocuments = await getDocs(questionsCollection);
+  const questionsList = questionsDocuments.docs.map((doc) => ({
+    id: doc.id,
+    questions: doc.data().questions,
+  }));
+  callback(questionsList);
+};
 export {
   db,
   auth,
@@ -68,4 +77,5 @@ export {
   loginUserWithEmail,
   logoutUser,
   getCandidates,
+  getQuestions,
 };

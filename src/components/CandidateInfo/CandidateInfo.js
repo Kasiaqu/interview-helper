@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { getQuestions } from "../../utils/db";
 import { TechnologySelect } from "../TechnologySelect/TechnologySelect";
 import s from "./CandidateInfo.module.css";
 export const CandidateInfo = ({ candidates }) => {
@@ -7,6 +8,7 @@ export const CandidateInfo = ({ candidates }) => {
   const [skills, setSkills] = useState([]);
   const [displaySkills, setDisplaySkills] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [questionsList, setQuestionsList] = useState([]);
   const candidateId = useParams().candidateId;
   const displayingSkills = (skills) => {
     setSkills(skills);
@@ -18,8 +20,21 @@ export const CandidateInfo = ({ candidates }) => {
       !checked ? categories.filter((x) => x !== name) : [...categories, name]
     );
   };
+  useEffect(() => getQuestions(setQuestionsList), []);
+  console.log(questionsList);
 
-  useEffect(() => console.log(selectedCategories), [selectedCategories]);
+  useEffect(() => {
+    getQuestionsPerCategory();
+  }, [toggleCategory]);
+
+  const getQuestionsPerCategory = () => {
+    const questionsPerCategory = selectedCategories.map((category) =>
+      questionsList.find((technology) => category === technology.id)
+    );
+    return questionsPerCategory;
+  };
+
+  // useEffect(() => console.log(selectedCategories), [selectedCategories]);
   return (
     <div className={s.candidateInfo}>
       <div className={s.candidateCounter}>
@@ -56,6 +71,14 @@ export const CandidateInfo = ({ candidates }) => {
               toggleCategory={toggleCategory}
             />
           ))}
+          {getQuestionsPerCategory()?.map((technology) =>
+            technology.questions?.map((question) => (
+              <div key={question.name}>
+                <p>{question.name}</p>
+                <p>{question.time} minutes</p>
+              </div>
+            ))
+          )}
         </div>
       ) : null}
     </div>

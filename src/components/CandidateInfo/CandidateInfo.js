@@ -4,14 +4,13 @@ import { TechnologySelect } from "../TechnologySelect/TechnologySelect";
 import s from "./CandidateInfo.module.css";
 export const CandidateInfo = ({ candidates }) => {
   console.log(candidates);
-  const [selectTechnologies, setSelectTechnologies] = useState([]);
-  const [displaySelectTechnologies, setDisplaySelectTechnologies] =
-    useState(false);
+  const [skills, setSkills] = useState([]);
+  const [displaySkills, setDisplaySkills] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const candidateId = useParams().candidateId;
-  const displayTechnologies = (skills) => {
-    setSelectTechnologies(skills);
-    setDisplaySelectTechnologies(true);
+  const displayingSkills = (skills) => {
+    setSkills(skills);
+    setDisplaySkills(true);
   };
 
   const toggleCategory = (name, checked) => {
@@ -39,18 +38,18 @@ export const CandidateInfo = ({ candidates }) => {
               </div>
               <p>Year of birth: {candidate.dateOfBirth}</p>
               <p>Experience: {candidate.bio}</p>
-              <button onClick={() => displayTechnologies(candidate.skills)}>
+              <button onClick={() => displayingSkills(candidate.skills)}>
                 Start interview
               </button>{" "}
             </div>
           ) : null
         )}
       </div>
-      {displaySelectTechnologies ? (
+      {displaySkills ? (
         <div className={s.skillsCounter}>
           How technologies do you want to ask the candidate about? Please select
           below:
-          {selectTechnologies.map((technology, index) => (
+          {skills.map((technology, index) => (
             <TechnologySelect
               key={index}
               technology={technology}

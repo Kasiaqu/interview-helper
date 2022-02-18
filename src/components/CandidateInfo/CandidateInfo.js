@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { TechnologySelect } from "../TechnologySelect/TechnologySelect";
 import s from "./CandidateInfo.module.css";
@@ -7,12 +7,20 @@ export const CandidateInfo = ({ candidates }) => {
   const [selectTechnologies, setSelectTechnologies] = useState([]);
   const [displaySelectTechnologies, setDisplaySelectTechnologies] =
     useState(false);
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const candidateId = useParams().candidateId;
   const displayTechnologies = (skills) => {
     setSelectTechnologies(skills);
     setDisplaySelectTechnologies(true);
-    console.log(selectTechnologies);
   };
+
+  const toggleCategory = (name, checked) => {
+    setSelectedCategories((categories) =>
+      !checked ? categories.filter((x) => x !== name) : [...categories, name]
+    );
+  };
+
+  useEffect(() => console.log(selectedCategories), [selectedCategories]);
   return (
     <div className={s.candidateInfo}>
       <div className={s.candidateCounter}>
@@ -23,12 +31,12 @@ export const CandidateInfo = ({ candidates }) => {
               <p>
                 Imię i nazwisko: {candidate.name + " " + candidate.lastName}
               </p>
-              <p>
+              <div>
                 Skills:{" "}
-                {candidate.skills.map((skill) => (
-                  <p>{skill}</p>
+                {candidate.skills.map((skill, index) => (
+                  <p key={index}>{skill}</p>
                 ))}
-              </p>
+              </div>
               <p>Year of birth: {candidate.dateOfBirth}</p>
               <p>Experience: {candidate.bio}</p>
               <button onClick={() => displayTechnologies(candidate.skills)}>
@@ -42,8 +50,12 @@ export const CandidateInfo = ({ candidates }) => {
         <div className={s.skillsCounter}>
           How technologies do you want to ask the candidate about? Please select
           below:
-          {selectTechnologies.map((technology) => (
-            <TechnologySelect key={technology} technology={technology} />
+          {selectTechnologies.map((technology, index) => (
+            <TechnologySelect
+              key={index}
+              technology={technology}
+              toggleCategory={toggleCategory}
+            />
           ))}
         </div>
       ) : null}

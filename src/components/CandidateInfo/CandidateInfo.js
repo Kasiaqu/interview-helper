@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getQuestions } from "../../utils/db";
+import { QuestionSelect } from "../QuestionSelect/QuestionSelect";
 import { TechnologySelect } from "../TechnologySelect/TechnologySelect";
 import s from "./CandidateInfo.module.css";
 export const CandidateInfo = ({ candidates }) => {
@@ -31,7 +32,7 @@ export const CandidateInfo = ({ candidates }) => {
     const questionsPerCategory = selectedCategories.map((category) =>
       questionsList.find((technology) => category === technology.id)
     );
-    return questionsPerCategory;
+    return questionsPerCategory ?? [];
   };
 
   // useEffect(() => console.log(selectedCategories), [selectedCategories]);
@@ -71,12 +72,11 @@ export const CandidateInfo = ({ candidates }) => {
               toggleCategory={toggleCategory}
             />
           ))}
+          <div></div>
+          How questions do you want to ask the candidate about?
           {getQuestionsPerCategory()?.map((technology) =>
             technology.questions?.map((question) => (
-              <div key={question.name}>
-                <p>{question.name}</p>
-                <p>{question.time} minutes</p>
-              </div>
+              <QuestionSelect key={question.name} question={question} />
             ))
           )}
         </div>

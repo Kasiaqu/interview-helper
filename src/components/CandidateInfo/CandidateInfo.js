@@ -9,6 +9,7 @@ export const CandidateInfo = ({ candidates }) => {
   const [skills, setSkills] = useState([]);
   const [displaySkills, setDisplaySkills] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedQuestions, setSelectedQuestions] = useState([]);
   const [questionsList, setQuestionsList] = useState([]);
   const candidateId = useParams().candidateId;
   const displayingSkills = (skills) => {
@@ -32,10 +33,15 @@ export const CandidateInfo = ({ candidates }) => {
     const questionsPerCategory = selectedCategories.map((category) =>
       questionsList.find((technology) => category === technology.id)
     );
-    return questionsPerCategory ?? [];
+    return questionsPerCategory;
+  };
+  const toggleQuestion = (name, checked) => {
+    setSelectedQuestions((questions) =>
+      !checked ? questions.filter((x) => x !== name) : [...questions, name]
+    );
   };
 
-  // useEffect(() => console.log(selectedCategories), [selectedCategories]);
+  useEffect(() => console.log(selectedQuestions), [selectedQuestions]);
   return (
     <div className={s.candidateInfo}>
       <div className={s.candidateCounter}>
@@ -76,7 +82,11 @@ export const CandidateInfo = ({ candidates }) => {
           How questions do you want to ask the candidate about?
           {getQuestionsPerCategory()?.map((technology) =>
             technology.questions?.map((question) => (
-              <QuestionSelect key={question.name} question={question} />
+              <QuestionSelect
+                key={question.name}
+                question={question}
+                toggleQuestion={toggleQuestion}
+              />
             ))
           )}
         </div>

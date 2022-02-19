@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 
-export const TechnologySelect = ({ technology, toggleCategory }) => {
+export const TechnologySelect = ({
+  technology,
+  toggleQuestion,
+  setSelectedCategories,
+}) => {
   const [checked, setChecked] = useState(false);
 
   useEffect(() => {
-    toggleCategory(technology, checked);
+    toggleQuestion(technology, checked, setSelectedCategories);
   }, [checked]);
   return (
     <label>

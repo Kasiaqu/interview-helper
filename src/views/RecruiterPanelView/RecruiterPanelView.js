@@ -7,7 +7,6 @@ export const RecruiterPanelView = ({ candidates, setCandidates }) => {
   useEffect(() => {
     getCandidates(setCandidates);
   }, []);
-  console.log(candidates);
   return (
     <div className={s.recruiterPanel}>
       Recruiter Panel\

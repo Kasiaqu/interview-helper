@@ -5,29 +5,24 @@ import { QuestionSelect } from "../QuestionSelect/QuestionSelect";
 import { TechnologySelect } from "../TechnologySelect/TechnologySelect";
 import s from "./CandidateInfo.module.css";
 export const CandidateInfo = ({ candidates }) => {
-  console.log(candidates);
   const [skills, setSkills] = useState([]);
   const [displaySkills, setDisplaySkills] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedQuestions, setSelectedQuestions] = useState([]);
   const [questionsList, setQuestionsList] = useState([]);
+  const [displayQuestions, setDisplayQuestions] = useState(false);
   const candidateId = useParams().candidateId;
   const displayingSkills = (skills) => {
     setSkills(skills);
     setDisplaySkills(true);
   };
 
-  const toggleCategory = (name, checked) => {
-    setSelectedCategories((categories) =>
-      !checked ? categories.filter((x) => x !== name) : [...categories, name]
-    );
-  };
+  // const toggleCategory = (name, checked) => {
+  //   setSelectedCategories((categories) =>
+  //     !checked ? categories.filter((x) => x !== name) : [...categories, name]
+  //   );
+  // };
   useEffect(() => getQuestions(setQuestionsList), []);
-  console.log(questionsList);
-
-  useEffect(() => {
-    getQuestionsPerCategory();
-  }, [toggleCategory]);
 
   const getQuestionsPerCategory = () => {
     const questionsPerCategory = selectedCategories.map((category) =>
@@ -35,13 +30,19 @@ export const CandidateInfo = ({ candidates }) => {
     );
     return questionsPerCategory;
   };
-  const toggleQuestion = (name, checked) => {
-    setSelectedQuestions((questions) =>
+  const toggleQuestion = (name, checked, setState) => {
+    setState((questions) =>
       !checked ? questions.filter((x) => x !== name) : [...questions, name]
     );
   };
+  useEffect(() => {
+    getQuestionsPerCategory();
+  }, [toggleQuestion]);
 
-  useEffect(() => console.log(selectedQuestions), [selectedQuestions]);
+  useEffect(
+    () => console.log(selectedQuestions),
+    [selectedCategories, selectedQuestions]
+  );
   return (
     <div className={s.candidateInfo}>
       <div className={s.candidateCounter}>
@@ -69,25 +70,42 @@ export const CandidateInfo = ({ candidates }) => {
       </div>
       {displaySkills ? (
         <div className={s.skillsCounter}>
-          How technologies do you want to ask the candidate about? Please select
-          below:
-          {skills.map((technology, index) => (
-            <TechnologySelect
-              key={index}
-              technology={technology}
-              toggleCategory={toggleCategory}
-            />
-          ))}
-          <div></div>
-          How questions do you want to ask the candidate about?
-          {getQuestionsPerCategory()?.map((technology) =>
-            technology.questions?.map((question) => (
-              <QuestionSelect
-                key={question.name}
-                question={question}
-                toggleQuestion={toggleQuestion}
-              />
-            ))
+          {!displayQuestions && (
+            <div>
+              How technologies do you want to ask the candidate about? Please
+              select below:
+              {skills.map((technology) => (
+                <TechnologySelect
+                  key={technology}
+                  technology={technology}
+                  toggleQuestion={toggleQuestion}
+                  setSelectedCategories={setSelectedCategories}
+                />
+              ))}
+              <button onClick={() => setDisplayQuestions(true)}>
+                {" "}
+                Display questions
+              </button>
+            </div>
+          )}
+
+          {displayQuestions && (
+            <div>
+              How questions do you want to ask the candidate about?
+              {getQuestionsPerCategory()?.map((technology) =>
+                technology.questions?.map((question, index) => (
+                  <QuestionSelect
+                    key={index}
+                    question={question}
+                    toggleQuestion={toggleQuestion}
+                    setSelectedQuestions={setSelectedQuestions}
+                  />
+                ))
+              )}
+              {selectedQuestions.map((question) => (
+                <p key={question.name}>{question.name}</p>
+              ))}
+            </div>
           )}
         </div>
       ) : null}

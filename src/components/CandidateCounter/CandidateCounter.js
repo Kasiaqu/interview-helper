@@ -2,7 +2,6 @@ import { BrowserRouter, Route, useNavigate } from "react-router-dom";
 import { CandidateInfo } from "../CandidateInfo/CandidateInfo";
 import s from "./CandidateCounter.module.css";
 export const CandidateCounter = ({ candidate }) => {
-  console.log(candidate);
   const navigate = useNavigate();
   const displayInfo = () => {
     navigate(`user/${candidate.id}`);

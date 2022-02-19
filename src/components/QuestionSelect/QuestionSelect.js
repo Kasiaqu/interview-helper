@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 
-export const QuestionSelect = ({ question, toggleQuestion }) => {
+export const QuestionSelect = ({
+  question,
+  toggleQuestion,
+  setSelectedQuestions,
+}) => {
   const [checked, setChecked] = useState(false);
 
   useEffect(() => {
-    toggleQuestion(question, checked);
+    toggleQuestion(question, checked, setSelectedQuestions);
   }, [checked]);
   return (
     <label key={question.name}>

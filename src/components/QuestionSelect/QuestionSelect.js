@@ -10,7 +10,6 @@ export const QuestionSelect = ({
   useEffect(() => {
     toggleQuestion(question, checked, setSelectedQuestions);
   }, [checked]);
-  console.log(technology);
   return (
     <label key={technology.id}>
       <input

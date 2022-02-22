@@ -12,7 +12,6 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [candidates, setCandidates] = useState([]);
   const [selectedQuestions, setSelectedQuestions] = useState([]);
-  console.log(selectedQuestions);
   useEffect(() => {
     return auth.onAuthStateChanged(setCurrentUser);
   }, []);

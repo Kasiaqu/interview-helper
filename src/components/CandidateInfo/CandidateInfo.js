@@ -14,7 +14,6 @@ export const CandidateInfo = ({
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [questionsList, setQuestionsList] = useState([]);
   const [displayQuestions, setDisplayQuestions] = useState(false);
-  const [displaySummary, setDisplaySummary] = useState(false);
   const candidateId = useParams().candidateId;
   const navigate = useNavigate();
   const displayingSkills = (skills) => {
@@ -27,12 +26,10 @@ export const CandidateInfo = ({
     const questionsPerCategory = selectedCategories.map((category) =>
       questionsList.find((technology) => category === technology.id)
     );
-    console.log(questionsPerCategory);
     return questionsPerCategory;
   };
   const toggleQuestion = (name, checked, setState) => {
     setState((questions) => {
-      console.log(questions);
       return !checked
         ? questions.filter((x) => x !== name)
         : [...questions, name];
@@ -42,10 +39,6 @@ export const CandidateInfo = ({
     getQuestionsPerCategory();
   }, [toggleQuestion]);
 
-  const displayingSummary = () => {
-    setDisplaySummary(true);
-    navigate("summary");
-  };
   useEffect(
     () => console.log(selectedQuestions),
     [selectedCategories, selectedQuestions]
@@ -107,7 +100,7 @@ export const CandidateInfo = ({
                   setSelectedQuestions={setSelectedQuestions}
                 />
               ))}
-              <button onClick={() => displayingSummary()}>Summary</button>
+              <button onClick={() => navigate("summary")}>Summary</button>
             </div>
           )}
         </div>

@@ -67,7 +67,6 @@ const getQuestions = async (callback) => {
   const questionsList = questionsDocuments.docs.map((doc) => ({
     id: doc.id,
     questions: doc.data().questions,
-    name: doc.data().name,
   }));
   callback(questionsList);
 };

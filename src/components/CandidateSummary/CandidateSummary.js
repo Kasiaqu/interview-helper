@@ -1,18 +1,22 @@
 import { useEffect, useState } from "react";
 import s from "./CandidateSummary.module.css";
 export const CandidateSummary = ({ selectedQuestions }) => {
-  const [answers, setAnsers] = useState([]);
+  const [answers, setAnswers] = useState([]);
   const toggleAnswer = (button, name, technology) => {
-    setAnsers((prevValue) => [...prevValue, { button, name, technology }]);
-    console.log(answers);
+    const newAnswers = answers.filter((answer) => answer.name !== name);
+    setAnswers(newAnswers);
+    return setAnswers((prevValue) => [
+      ...prevValue,
+      { button, name, technology },
+    ]);
   };
-  console.log(selectedQuestions);
+
   useEffect(() => console.log(answers), [toggleAnswer]);
   return (
     <div className={s.candidateSummary}>
       <div className={s.summaryCounter}>
         {selectedQuestions.map((question, index) => (
-          <label key={question.name}>
+          <div key={question.name}>
             <h3>
               {index + 1}. {question.name}
             </h3>
@@ -49,7 +53,7 @@ export const CandidateSummary = ({ selectedQuestions }) => {
             >
               Very good answer
             </button>
-          </label>
+          </div>
         ))}
       </div>
     </div>

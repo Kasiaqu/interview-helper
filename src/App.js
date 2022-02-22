@@ -6,11 +6,13 @@ import { RecruiterPanelView } from "./views/RecruiterPanelView/RecruiterPanelVie
 import { auth, logoutUser } from "./utils/db";
 import s from "./App.module.css";
 import { CandidateInfo } from "./components/CandidateInfo/CandidateInfo";
+import { CandidateSummary } from "./components/CandidateSummary/CandidateSummary";
 function App() {
   const [isRegistered, setIsRegistered] = useState("");
   const [currentUser, setCurrentUser] = useState(null);
   const [candidates, setCandidates] = useState([]);
-
+  const [selectedQuestions, setSelectedQuestions] = useState([]);
+  console.log(selectedQuestions);
   useEffect(() => {
     return auth.onAuthStateChanged(setCurrentUser);
   }, []);
@@ -43,7 +45,17 @@ function App() {
           />
           <Route
             path="panel/user/:candidateId"
-            element={<CandidateInfo candidates={candidates} />}
+            element={
+              <CandidateInfo
+                candidates={candidates}
+                selectedQuestions={selectedQuestions}
+                setSelectedQuestions={setSelectedQuestions}
+              />
+            }
+          />
+          <Route
+            path="panel/user/:candidateId/summary"
+            element={<CandidateSummary selectedQuestions={selectedQuestions} />}
           />
         </Routes>
       </BrowserRouter>

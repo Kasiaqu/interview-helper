@@ -1,44 +1,51 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getQuestions } from "../../utils/db";
-import { QuestionSelect } from "../QuestionSelect/QuestionSelect";
+import { QuestionCounter } from "../QuestionCounter/QuestionCounter";
 import { TechnologySelect } from "../TechnologySelect/TechnologySelect";
 import s from "./CandidateInfo.module.css";
-export const CandidateInfo = ({ candidates }) => {
+export const CandidateInfo = ({
+  candidates,
+  selectedQuestions,
+  setSelectedQuestions,
+}) => {
   const [skills, setSkills] = useState([]);
   const [displaySkills, setDisplaySkills] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const [selectedQuestions, setSelectedQuestions] = useState([]);
   const [questionsList, setQuestionsList] = useState([]);
   const [displayQuestions, setDisplayQuestions] = useState(false);
+  const [displaySummary, setDisplaySummary] = useState(false);
   const candidateId = useParams().candidateId;
+  const navigate = useNavigate();
   const displayingSkills = (skills) => {
     setSkills(skills);
     setDisplaySkills(true);
   };
-
-  // const toggleCategory = (name, checked) => {
-  //   setSelectedCategories((categories) =>
-  //     !checked ? categories.filter((x) => x !== name) : [...categories, name]
-  //   );
-  // };
   useEffect(() => getQuestions(setQuestionsList), []);
 
   const getQuestionsPerCategory = () => {
     const questionsPerCategory = selectedCategories.map((category) =>
       questionsList.find((technology) => category === technology.id)
     );
+    console.log(questionsPerCategory);
     return questionsPerCategory;
   };
   const toggleQuestion = (name, checked, setState) => {
-    setState((questions) =>
-      !checked ? questions.filter((x) => x !== name) : [...questions, name]
-    );
+    setState((questions) => {
+      console.log(questions);
+      return !checked
+        ? questions.filter((x) => x !== name)
+        : [...questions, name];
+    });
   };
   useEffect(() => {
     getQuestionsPerCategory();
   }, [toggleQuestion]);
 
+  const displayingSummary = () => {
+    setDisplaySummary(true);
+    navigate("summary");
+  };
   useEffect(
     () => console.log(selectedQuestions),
     [selectedCategories, selectedQuestions]
@@ -92,19 +99,15 @@ export const CandidateInfo = ({ candidates }) => {
           {displayQuestions && (
             <div>
               How questions do you want to ask the candidate about?
-              {getQuestionsPerCategory()?.map((technology) =>
-                technology.questions?.map((question, index) => (
-                  <QuestionSelect
-                    key={index}
-                    question={question}
-                    toggleQuestion={toggleQuestion}
-                    setSelectedQuestions={setSelectedQuestions}
-                  />
-                ))
-              )}
-              {selectedQuestions.map((question) => (
-                <p key={question.name}>{question.name}</p>
+              {getQuestionsPerCategory()?.map((technology) => (
+                <QuestionCounter
+                  key={technology.id}
+                  technology={technology}
+                  toggleQuestion={toggleQuestion}
+                  setSelectedQuestions={setSelectedQuestions}
+                />
               ))}
+              <button onClick={() => displayingSummary()}>Summary</button>
             </div>
           )}
         </div>

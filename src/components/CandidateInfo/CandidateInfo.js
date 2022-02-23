@@ -39,10 +39,6 @@ export const CandidateInfo = ({
     getQuestionsPerCategory();
   }, [toggleQuestion]);
 
-  useEffect(
-    () => console.log(selectedQuestions),
-    [selectedCategories, selectedQuestions]
-  );
   return (
     <div className={s.candidateInfo}>
       <div className={s.candidateCounter}>

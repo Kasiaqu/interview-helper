@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { AnswersPerTechnologyCounter } from "../AnswersPerTechnologyCounter/AnswersPerTechnologyCounter";
 import s from "./CandidateSummary.module.css";
 export const CandidateSummary = ({ selectedQuestions }) => {
   const [answers, setAnswers] = useState([]);
@@ -14,10 +15,15 @@ export const CandidateSummary = ({ selectedQuestions }) => {
       { button, name, technology },
     ]);
   };
-  useEffect(
-    () => console.log(answers, badAnswers, goodAnswers),
-    [toggleAnswer]
-  );
+
+  const getTechnologies = () => {
+    const technologies = Array.from(
+      new Set(answers.map((answer) => answer.technology))
+    );
+    return technologies.map((technology) =>
+      answers.filter((answer) => answer.technology === technology)
+    );
+  };
 
   useEffect(() => {
     setBadAnswers(answers.filter((answer) => answer.button === "Bad"));
@@ -90,6 +96,12 @@ export const CandidateSummary = ({ selectedQuestions }) => {
           <h3>Very good answers: {veryGoodAnswers.length}</h3>
           {veryGoodAnswers.map((answer) => (
             <p key={answer.name}>{answer.name}</p>
+          ))}
+        </div>
+        <div>
+          Answers per technology:
+          {getTechnologies().map((technology, index) => (
+            <AnswersPerTechnologyCounter key={index} technology={technology} />
           ))}
         </div>
       </div>

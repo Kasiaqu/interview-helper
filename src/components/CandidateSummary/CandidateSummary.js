@@ -16,6 +16,9 @@ export const CandidateSummary = ({ selectedQuestions }) => {
     ]);
   };
 
+  const getAnswersPerResult = (answers) =>
+    answers.map((answer) => <p key={answer.name}>{answer.name}</p>);
+
   const getTechnologies = () => {
     const technologies = Array.from(
       new Set(answers.map((answer) => answer.technology))
@@ -82,26 +85,25 @@ export const CandidateSummary = ({ selectedQuestions }) => {
         <div>
           <p>Amount of answers: {answers.length}</p>
           <h3>Bad answers: {badAnswers.length}</h3>
-          {badAnswers.map((answer) => (
-            <p key={answer.name}>{answer.name}</p>
-          ))}
+          {getAnswersPerResult(badAnswers)}
           <h3>Not fully understand answers: {notUnderstandAnswers.length}</h3>
-          {notUnderstandAnswers.map((answer) => (
-            <p key={answer.name}>{answer.name}</p>
-          ))}
+          {getAnswersPerResult(notUnderstandAnswers)}
           <h3>Good answers: {goodAnswers.length}</h3>
-          {goodAnswers.map((answer) => (
-            <p key={answer.name}>{answer.name}</p>
-          ))}
+          {getAnswersPerResult(goodAnswers)}
           <h3>Very good answers: {veryGoodAnswers.length}</h3>
-          {veryGoodAnswers.map((answer) => (
-            <p key={answer.name}>{answer.name}</p>
-          ))}
+          {getAnswersPerResult(veryGoodAnswers)}
         </div>
         <div>
           Answers per technology:
           {getTechnologies().map((technology, index) => (
-            <AnswersPerTechnologyCounter key={index} technology={technology} />
+            <AnswersPerTechnologyCounter
+              key={index}
+              technology={technology}
+              badAnswers={badAnswers}
+              notUnderstandAnswers={notUnderstandAnswers}
+              goodAnswers={goodAnswers}
+              veryGoodAnswers={veryGoodAnswers}
+            />
           ))}
         </div>
       </div>

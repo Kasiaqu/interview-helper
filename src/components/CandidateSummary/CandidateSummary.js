@@ -75,10 +75,22 @@ export const CandidateSummary = ({ selectedQuestions }) => {
         ))}
         <div>
           <p>Amount of answers: {answers.length}</p>
-          <p>Bad answers: {badAnswers.length}</p>
-          <p>Not fully understand answers: {notUnderstandAnswers.length}</p>
-          <p>Good answers: {goodAnswers.length}</p>
-          <p>Very good answers: {veryGoodAnswers.length}</p>
+          <h3>Bad answers: {badAnswers.length}</h3>
+          {badAnswers.map((answer) => (
+            <p key={answer.name}>{answer.name}</p>
+          ))}
+          <h3>Not fully understand answers: {notUnderstandAnswers.length}</h3>
+          {notUnderstandAnswers.map((answer) => (
+            <p key={answer.name}>{answer.name}</p>
+          ))}
+          <h3>Good answers: {goodAnswers.length}</h3>
+          {goodAnswers.map((answer) => (
+            <p key={answer.name}>{answer.name}</p>
+          ))}
+          <h3>Very good answers: {veryGoodAnswers.length}</h3>
+          {veryGoodAnswers.map((answer) => (
+            <p key={answer.name}>{answer.name}</p>
+          ))}
         </div>
       </div>
     </div>

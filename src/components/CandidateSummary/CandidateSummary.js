@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import s from "./CandidateSummary.module.css";
 export const CandidateSummary = ({ selectedQuestions }) => {
   const [answers, setAnswers] = useState([]);
+  const [badAnswers, setBadAnswers] = useState([]);
+  const [notUnderstandAnswers, setNotUnderstandAnswers] = useState([]);
+  const [goodAnswers, setGoodAnswers] = useState([]);
+  const [veryGoodAnswers, setVeryGoodAnswers] = useState([]);
   const toggleAnswer = (button, name, technology) => {
     const newAnswers = answers.filter((answer) => answer.name !== name);
     setAnswers(newAnswers);
@@ -10,8 +14,22 @@ export const CandidateSummary = ({ selectedQuestions }) => {
       { button, name, technology },
     ]);
   };
+  useEffect(
+    () => console.log(answers, badAnswers, goodAnswers),
+    [toggleAnswer]
+  );
 
-  useEffect(() => console.log(answers), [toggleAnswer]);
+  useEffect(() => {
+    setBadAnswers(answers.filter((answer) => answer.button === "Bad"));
+    setNotUnderstandAnswers(
+      answers.filter((answer) => answer.button === "Not understand")
+    );
+    setGoodAnswers(answers.filter((answer) => answer.button === "Good"));
+    setVeryGoodAnswers(
+      answers.filter((answer) => answer.button === "Very good")
+    );
+  }, [answers]);
+
   return (
     <div className={s.candidateSummary}>
       <div className={s.summaryCounter}>
@@ -31,7 +49,7 @@ export const CandidateSummary = ({ selectedQuestions }) => {
             <button
               onClick={() =>
                 toggleAnswer(
-                  "Not fully understand",
+                  "Not understand",
                   question.name,
                   question.technology
                 )
@@ -55,6 +73,13 @@ export const CandidateSummary = ({ selectedQuestions }) => {
             </button>
           </div>
         ))}
+        <div>
+          <p>Amount of answers: {answers.length}</p>
+          <p>Bad answers: {badAnswers.length}</p>
+          <p>Not fully understand answers: {notUnderstandAnswers.length}</p>
+          <p>Good answers: {goodAnswers.length}</p>
+          <p>Very good answers: {veryGoodAnswers.length}</p>
+        </div>
       </div>
     </div>
   );

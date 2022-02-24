@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { logoutUser } from "../../utils/db";
 import s from "./NavBar.module.css";
 
 export const Navbar = ({ setIsRegistered, currentUser }) => {
@@ -9,15 +8,13 @@ export const Navbar = ({ setIsRegistered, currentUser }) => {
     navigate("/login");
   };
   return (
-    <div className={s.navBar}>
-      {currentUser ? (
-        <button onClick={() => logoutUser()}>Wyloguj</button>
-      ) : (
-        <div>
+    <>
+      {!currentUser && (
+        <div className={s.navBar}>
           <button onClick={() => registerOrLogin(false)}>Register</button>
           <button onClick={() => registerOrLogin(true)}>Login</button>
         </div>
       )}
-    </div>
+    </>
   );
 };

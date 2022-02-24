@@ -41,7 +41,6 @@ export const RegisterOrLoginView = ({ isRegistered }) => {
   };
   return (
     <div className={s.RegisterOrLogin}>
-      <button onClick={() => navigate("/")}>Come back to home page</button>
       {isRegistered ? (
         <div>
           <form className={s.form} onSubmit={handleSubmitLogin}>

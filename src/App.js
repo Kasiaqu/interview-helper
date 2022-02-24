@@ -7,11 +7,45 @@ import { auth, logoutUser } from "./utils/db";
 import s from "./App.module.css";
 import { CandidateInfo } from "./components/CandidateInfo/CandidateInfo";
 import { CandidateSummary } from "./components/CandidateSummary/CandidateSummary";
+import { CandidateFinish } from "./components/CandidateFinish/CandidateFinish";
 function App() {
   const [isRegistered, setIsRegistered] = useState("");
   const [currentUser, setCurrentUser] = useState(null);
   const [candidates, setCandidates] = useState([]);
   const [selectedQuestions, setSelectedQuestions] = useState([]);
+  const [answers, setAnswers] = useState([]);
+  const [badAnswers, setBadAnswers] = useState([]);
+  const [notUnderstandAnswers, setNotUnderstandAnswers] = useState([]);
+  const [goodAnswers, setGoodAnswers] = useState([]);
+  const [veryGoodAnswers, setVeryGoodAnswers] = useState([]);
+  const toggleAnswer = (button, name, technology) => {
+    const newAnswers = answers.filter((answer) => answer.name !== name);
+    setAnswers(newAnswers);
+    return setAnswers((prevValue) => [
+      ...prevValue,
+      { button, name, technology },
+    ]);
+  };
+  const getTechnologies = () => {
+    const technologies = Array.from(
+      new Set(answers.map((answer) => answer.technology))
+    );
+    return technologies.map((technology) =>
+      answers.filter((answer) => answer.technology === technology)
+    );
+  };
+  const getAnswersPerResult = (answers) =>
+    answers.map((answer) => <p key={answer.name}>{answer.name}</p>);
+  useEffect(() => {
+    setBadAnswers(answers.filter((answer) => answer.button === "Bad"));
+    setNotUnderstandAnswers(
+      answers.filter((answer) => answer.button === "Not understand")
+    );
+    setGoodAnswers(answers.filter((answer) => answer.button === "Good"));
+    setVeryGoodAnswers(
+      answers.filter((answer) => answer.button === "Very good")
+    );
+  }, [answers]);
   useEffect(() => {
     return auth.onAuthStateChanged(setCurrentUser);
   }, []);
@@ -54,7 +88,27 @@ function App() {
           />
           <Route
             path="panel/user/:candidateId/summary"
-            element={<CandidateSummary selectedQuestions={selectedQuestions} />}
+            element={
+              <CandidateSummary
+                selectedQuestions={selectedQuestions}
+                toggleAnswer={toggleAnswer}
+              />
+            }
+          />
+          <Route
+            path="panel/user/:candidateId/summary/finish"
+            element={
+              <CandidateFinish
+                selectedQuestions={selectedQuestions}
+                answers={answers}
+                badAnswers={badAnswers}
+                notUnderstandAnswers={notUnderstandAnswers}
+                goodAnswers={goodAnswers}
+                veryGoodAnswers={veryGoodAnswers}
+                getAnswersPerResult={getAnswersPerResult}
+                getTechnologies={getTechnologies}
+              />
+            }
           />
         </Routes>
       </BrowserRouter>

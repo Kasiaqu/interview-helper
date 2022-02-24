@@ -1,43 +1,9 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AnswersPerTechnologyCounter } from "../AnswersPerTechnologyCounter/AnswersPerTechnologyCounter";
 import s from "./CandidateSummary.module.css";
-export const CandidateSummary = ({ selectedQuestions }) => {
-  const [answers, setAnswers] = useState([]);
-  const [badAnswers, setBadAnswers] = useState([]);
-  const [notUnderstandAnswers, setNotUnderstandAnswers] = useState([]);
-  const [goodAnswers, setGoodAnswers] = useState([]);
-  const [veryGoodAnswers, setVeryGoodAnswers] = useState([]);
-  const toggleAnswer = (button, name, technology) => {
-    const newAnswers = answers.filter((answer) => answer.name !== name);
-    setAnswers(newAnswers);
-    return setAnswers((prevValue) => [
-      ...prevValue,
-      { button, name, technology },
-    ]);
-  };
-
-  const getAnswersPerResult = (answers) =>
-    answers.map((answer) => <p key={answer.name}>{answer.name}</p>);
-
-  const getTechnologies = () => {
-    const technologies = Array.from(
-      new Set(answers.map((answer) => answer.technology))
-    );
-    return technologies.map((technology) =>
-      answers.filter((answer) => answer.technology === technology)
-    );
-  };
-
-  useEffect(() => {
-    setBadAnswers(answers.filter((answer) => answer.button === "Bad"));
-    setNotUnderstandAnswers(
-      answers.filter((answer) => answer.button === "Not understand")
-    );
-    setGoodAnswers(answers.filter((answer) => answer.button === "Good"));
-    setVeryGoodAnswers(
-      answers.filter((answer) => answer.button === "Very good")
-    );
-  }, [answers]);
+export const CandidateSummary = ({ selectedQuestions, toggleAnswer }) => {
+  const navigate = useNavigate();
 
   return (
     <div className={s.candidateSummary}>
@@ -82,30 +48,7 @@ export const CandidateSummary = ({ selectedQuestions }) => {
             </button>
           </div>
         ))}
-        <div>
-          <p>Amount of answers: {answers.length}</p>
-          <h3>Bad answers: {badAnswers.length}</h3>
-          {getAnswersPerResult(badAnswers)}
-          <h3>Not fully understand answers: {notUnderstandAnswers.length}</h3>
-          {getAnswersPerResult(notUnderstandAnswers)}
-          <h3>Good answers: {goodAnswers.length}</h3>
-          {getAnswersPerResult(goodAnswers)}
-          <h3>Very good answers: {veryGoodAnswers.length}</h3>
-          {getAnswersPerResult(veryGoodAnswers)}
-        </div>
-        <div>
-          Answers per technology:
-          {getTechnologies().map((technology, index) => (
-            <AnswersPerTechnologyCounter
-              key={index}
-              technology={technology}
-              badAnswers={badAnswers}
-              notUnderstandAnswers={notUnderstandAnswers}
-              goodAnswers={goodAnswers}
-              veryGoodAnswers={veryGoodAnswers}
-            />
-          ))}
-        </div>
+        <button onClick={() => navigate("finish")}>Finish the interview</button>
       </div>
     </div>
   );

@@ -8,8 +8,21 @@ export const RegisterOrLoginView = ({ isRegistered }) => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const navigate = useNavigate();
+
+  const labelField = (title, state, setState) => {
+    return (
+      <label>
+        {title.charAt(0).toUpperCase() + title.slice(1)}
+        <input
+          type={title}
+          value={state}
+          onChange={(e) => setState(e.target.value)}
+        ></input>
+      </label>
+    );
+  };
+
   const handleSubmitRegister = (e) => {
     e.preventDefault();
     registerUserWithEmail(name, lastName, email, password);
@@ -17,12 +30,11 @@ export const RegisterOrLoginView = ({ isRegistered }) => {
     setLastName("");
     setEmail("");
     setPassword("");
+    navigate("/panel");
   };
   const handleSubmitLogin = (e) => {
     e.preventDefault();
     loginUserWithEmail(email, password);
-    setName("");
-    setLastName("");
     setEmail("");
     setPassword("");
     navigate("/panel");
@@ -33,60 +45,18 @@ export const RegisterOrLoginView = ({ isRegistered }) => {
       {isRegistered ? (
         <div>
           <form className={s.form} onSubmit={handleSubmitLogin}>
-            <label>
-              Email
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              ></input>
-            </label>
-            <label>
-              Password
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              ></input>
-            </label>
+            {labelField("email", email, setEmail)}
+            {labelField("password", password, setPassword)}
             <button type="submit">Login</button>
           </form>
         </div>
       ) : (
         <div>
           <form className={s.form} onSubmit={handleSubmitRegister}>
-            <label>
-              Name
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              ></input>
-            </label>
-            <label>
-              Last name
-              <input
-                type="text"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-              ></input>
-            </label>
-            <label>
-              Email
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              ></input>
-            </label>
-            <label>
-              Password
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              ></input>
-            </label>
+            {labelField("name", name, setName)}
+            {labelField("last name", lastName, setLastName)}
+            {labelField("email", email, setEmail)}
+            {labelField("password", password, setPassword)}
             <button type="submit">Register</button>
           </form>
         </div>

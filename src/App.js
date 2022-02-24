@@ -20,6 +20,11 @@ function App() {
   const [goodAnswers, setGoodAnswers] = useState([]);
   const [veryGoodAnswers, setVeryGoodAnswers] = useState([]);
   const navigate = useNavigate();
+
+  const toggleLogoutUser = () => {
+    logoutUser();
+    navigate("/");
+  };
   const toggleAnswer = (button, name, technology) => {
     const newAnswers = answers.filter((answer) => answer.name !== name);
     setAnswers(newAnswers);
@@ -56,9 +61,10 @@ function App() {
     <div className={s.app}>
       <div className={s.navBar}>
         <h1 onClick={() => navigate("/")}>InterView Helper</h1>
-        {currentUser && <button onClick={() => logoutUser()}>Wyloguj</button>}
+        {currentUser && (
+          <button onClick={() => toggleLogoutUser()}>Wyloguj</button>
+        )}
       </div>
-
       <Routes>
         <Route
           path="/"

@@ -4,7 +4,7 @@
 }
 .headerPanel {
   padding: 10px 50px;
-  margin: 20px 50px;
+  margin: 0 50px;
   display: flex;
   background-color: lightgray;
   opacity: 0.9;

@@ -17,3 +17,7 @@
   width: 20%;
   margin-left: 0;
 }
+.skills {
+  display: flex;
+  flex-direction: column;
+}

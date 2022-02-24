@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AnswersPerTechnologyCounter } from "../AnswersPerTechnologyCounter/AnswersPerTechnologyCounter";
 import s from "./CandidateSummary.module.css";
 export const CandidateSummary = ({ selectedQuestions, toggleAnswer }) => {
   const navigate = useNavigate();

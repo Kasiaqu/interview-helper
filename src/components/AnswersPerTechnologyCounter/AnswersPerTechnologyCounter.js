@@ -13,13 +13,19 @@ export const AnswersPerTechnologyCounter = ({
   return (
     <div>
       <h3>Technology: {technology[0].technology}</h3>
-      <h3>Bad answers:</h3>
+      <h3>Bad answers: {getAnswersPerCategory(badAnswers).length}</h3>
       {getAnswersPerCategory(badAnswers)}
-      <h3>Not understand answers:</h3>
+      <h3>
+        Not understand answers:{" "}
+        {getAnswersPerCategory(notUnderstandAnswers).length}
+      </h3>
       {getAnswersPerCategory(notUnderstandAnswers)}
-      <h3>Good answers:</h3>
+
+      <h3>Good answers: {getAnswersPerCategory(goodAnswers).length}</h3>
       {getAnswersPerCategory(goodAnswers)}
-      <h3>Very good answers:</h3>
+      <h3>
+        Very good answers: {getAnswersPerCategory(veryGoodAnswers).length}
+      </h3>
       {getAnswersPerCategory(veryGoodAnswers)}
     </div>
   );

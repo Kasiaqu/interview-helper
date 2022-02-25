@@ -57,6 +57,8 @@ const getCandidates = async (callback) => {
     dateOfBirth: doc.data()["date of birth"],
     bio: doc.data().bio,
     skills: doc.data().skills,
+    projects: doc.data().projects,
+    hobbies: doc.data().hobbies,
   }));
   callback(candidatesList);
 };

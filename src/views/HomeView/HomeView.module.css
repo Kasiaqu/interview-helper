@@ -16,6 +16,12 @@
   width: 55%;
   margin: 50px auto;
   padding: 20px 30px;
-  background-color: lightgray;
+  background-color: var(--background);
   opacity: 0.9;
+  border-radius: 25px;
+}
+.info h1 {
+  color: var(--header);
+  font-family: "Reenie Beanie", cursive;
+  font-size: 55px;
 }

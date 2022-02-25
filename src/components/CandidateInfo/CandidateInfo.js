@@ -46,20 +46,41 @@ export const CandidateInfo = ({
         {candidates.map((candidate) =>
           candidate.id === candidateId ? (
             <div key={candidate.id}>
-              <p>
-                Name and last name: {candidate.name + " " + candidate.lastName}
-              </p>
-              <div>
-                <p>Skills:</p>
-                {candidate.skills.map((skill, index) => (
-                  <p key={index}>{skill}</p>
-                ))}
+              <div className={s.counter}>
+                <p>Name and last name: </p>
+                <p>{candidate.name + " " + candidate.lastName}</p>
               </div>
-              <p>Year of birth: {candidate.dateOfBirth}</p>
-              <p>Experience: {candidate.bio}</p>
+              <div className={s.counter}>
+                <p>Skills:</p>
+                <p className={s.array}>
+                  {candidate.skills.map((skill) => skill).join(", ")}
+                </p>
+              </div>
+              <div className={s.counter}>
+                <p>Year of birth: </p>
+                <p>{candidate.dateOfBirth}</p>
+              </div>
+              <div className={s.counter}>
+                <p>Experience:</p>
+                <p> {candidate.bio}</p>
+              </div>
+              <div className={s.counter}>
+                <p>Last projects: </p>
+                <div className={s.array}>
+                  <p className={s.array}>
+                    {candidate.projects.map((project) => project).join(", ")}
+                  </p>
+                </div>
+              </div>
+              <div className={s.counter}>
+                <p>Hobbies:</p>
+                <p className={s.array}>
+                  {candidate.hobbies.map((hobby) => hobby).join(", ")}
+                </p>
+              </div>
               <button onClick={() => displayingSkills(candidate.skills)}>
                 Start interview
-              </button>{" "}
+              </button>
             </div>
           ) : null
         )}

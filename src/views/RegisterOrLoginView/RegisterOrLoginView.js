@@ -40,25 +40,24 @@ export const RegisterOrLoginView = ({ isRegistered }) => {
     navigate("/panel");
   };
   return (
-    <div className={s.RegisterOrLogin}>
+    <div className={s.registerOrLogin}>
       {isRegistered ? (
-        <div>
-          <form className={s.form} onSubmit={handleSubmitLogin}>
-            {labelField("email", email, setEmail)}
-            {labelField("password", password, setPassword)}
-            <button type="submit">Login</button>
-          </form>
-        </div>
+        <form className={s.form} onSubmit={handleSubmitLogin}>
+          <h2>Sign in to your account</h2>
+
+          {labelField("email", email, setEmail)}
+          {labelField("password", password, setPassword)}
+          <button type="submit">Login</button>
+        </form>
       ) : (
-        <div>
-          <form className={s.form} onSubmit={handleSubmitRegister}>
-            {labelField("name", name, setName)}
-            {labelField("last name", lastName, setLastName)}
-            {labelField("email", email, setEmail)}
-            {labelField("password", password, setPassword)}
-            <button type="submit">Register</button>
-          </form>
-        </div>
+        <form className={s.form} onSubmit={handleSubmitRegister}>
+          <h2>Complete the form below to sign up for our service</h2>
+          {labelField("name", name, setName)}
+          {labelField("last name", lastName, setLastName)}
+          {labelField("email", email, setEmail)}
+          {labelField("password", password, setPassword)}
+          <button type="submit">Register</button>
+        </form>
       )}
     </div>
   );

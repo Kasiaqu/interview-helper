@@ -9,6 +9,7 @@ import { CandidateInfo } from "./components/CandidateInfo/CandidateInfo";
 import { CandidateSummary } from "./components/CandidateSummary/CandidateSummary";
 import { CandidateFinish } from "./components/CandidateFinish/CandidateFinish";
 import { Navbar } from "./components/NavBar/NavBar";
+import logo from "./images/pngwing.png";
 function App() {
   const [isRegistered, setIsRegistered] = useState("");
   const [currentUser, setCurrentUser] = useState(null);
@@ -60,9 +61,13 @@ function App() {
   return (
     <div className={s.app}>
       <div className={s.navBar}>
-        <h1 onClick={() => navigate("/")}>InterView Helper</h1>
+        <div className={s.navBarLogo} onClick={() => navigate("/")}>
+          <img src={logo} height="100%" />
+          <h1>Interview Helper</h1>
+        </div>
+
         {currentUser && (
-          <button onClick={() => toggleLogoutUser()}>Wyloguj</button>
+          <button onClick={() => toggleLogoutUser()}>Logout</button>
         )}
       </div>
       <Routes>

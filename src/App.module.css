@@ -64,10 +64,10 @@ body {
   margin: 20px;
   min-width: 120px;
 }
-button {
+.app button {
   position: relative;
-  margin-inline: 5px;
-  padding: 10px;
+  /* margin-inline: 5px; */
+  padding: 15px;
   margin-right: 30px;
   font: inherit;
   color: var(--black);
@@ -77,12 +77,15 @@ button {
   overflow: hidden;
   z-index: 1;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-button:hover {
+.app button:hover {
   color: var(--header);
 }
-button::before {
+.app button::before {
   content: "";
   position: absolute;
   top: 0;
@@ -94,7 +97,7 @@ button::before {
   z-index: -1;
   transform: translateX(-100%);
 }
-button:hover::before {
+.app button:hover::before {
   transform: translateX(0);
 }
 ::-webkit-scrollbar {

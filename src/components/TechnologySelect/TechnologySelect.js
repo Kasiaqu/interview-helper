@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import s from "./TechnologySelect.module.css";
 
 export const TechnologySelect = ({
   technology,
@@ -11,13 +12,14 @@ export const TechnologySelect = ({
     toggleQuestion(technology, checked, setSelectedCategories);
   }, [checked]);
   return (
-    <label>
+    <label className={s.label}>
       <input
         type="checkbox"
         checked={checked}
         onChange={() => setChecked(!checked)}
+        className={s.input}
       />
-      {technology}
+      <p>{technology}</p>
     </label>
   );
 };

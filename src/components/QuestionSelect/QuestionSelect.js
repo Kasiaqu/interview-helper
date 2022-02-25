@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-
+import s from "./QuestionSelect.module.css";
 export const QuestionSelect = ({
   question,
-  technology,
   toggleQuestion,
   setSelectedQuestions,
 }) => {
@@ -11,13 +10,14 @@ export const QuestionSelect = ({
     toggleQuestion(question, checked, setSelectedQuestions);
   }, [checked]);
   return (
-    <label key={technology.id}>
+    <label className={s.label}>
       <input
         type="checkbox"
         checked={checked}
         onChange={() => setChecked(!checked)}
+        className={s.input}
       />
-      {question.name}
+      <p>{question.name}</p>
     </label>
   );
 };

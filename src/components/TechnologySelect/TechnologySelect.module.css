@@ -1,0 +1,29 @@
+.input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  position: relative;
+  left: -20px;
+  padding: 6px;
+  background-clip: content-box;
+  border: 1.5px solid #bbbbbb;
+  border-radius: 6px;
+  background-color: #e7e6e7;
+}
+.input:checked {
+  background-color: var(--header);
+}
+
+.input:focus {
+  outline: none !important;
+}
+
+.label > p {
+  margin: 10px;
+  position: relative;
+  left: 20px;
+  top: -40px;
+}

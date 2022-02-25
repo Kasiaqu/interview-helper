@@ -5,11 +5,11 @@
 }
 .candidateCounter,
 .skillsCounter {
-  width: 50%;
+  width: 40%;
   padding: 50px;
   background-color: var(--background);
   opacity: 0.9;
-  margin: 50px;
+  margin: 20px;
   display: flex;
   flex-direction: column;
   overflow: auto;
@@ -18,14 +18,22 @@
 .candidateCounter > h2 {
   color: var(--header);
 }
+
 .skillsCounter {
   width: 20%;
-  margin-left: 0;
 }
+.skillsCounter > h2 {
+  font-size: 20px;
+  color: var(--header);
+}
+
 .skills {
   display: flex;
   flex-direction: column;
+  padding: 10px;
+  margin-bottom: 10px;
 }
+
 .counter {
   height: min-content;
   padding: 10px 0;

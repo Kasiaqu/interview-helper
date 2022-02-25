@@ -45,7 +45,7 @@ export const CandidateInfo = ({
         <h2> Information about candidate</h2>
         {candidates.map((candidate) =>
           candidate.id === candidateId ? (
-            <div key={candidate.id}>
+            <div key={candidate.id} className={s.infoCounter}>
               <div className={s.counter}>
                 <p>Name and last name: </p>
                 <p>{candidate.name + " " + candidate.lastName}</p>
@@ -89,8 +89,10 @@ export const CandidateInfo = ({
         <div className={s.skillsCounter}>
           {!displayQuestions && (
             <>
-              How technologies do you want to ask the candidate about? Please
-              select below:
+              <h2>
+                How technologies do you want to ask the candidate about? Please
+                select below:
+              </h2>
               <div className={s.skills}>
                 {skills.map((technology) => (
                   <TechnologySelect
@@ -110,7 +112,7 @@ export const CandidateInfo = ({
 
           {displayQuestions && (
             <>
-              How questions do you want to ask the candidate about?
+              <h2>How questions do you want to ask the candidate about?</h2>
               <div className={s.skills}>
                 {getQuestionsPerCategory()?.map((technology) => (
                   <QuestionCounter

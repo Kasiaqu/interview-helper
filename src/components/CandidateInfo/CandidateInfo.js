@@ -4,6 +4,7 @@ import { getQuestions } from "../../utils/db";
 import { QuestionCounter } from "../QuestionCounter/QuestionCounter";
 import { TechnologySelect } from "../TechnologySelect/TechnologySelect";
 import { ButtonCandidatesList } from "../ButtonCandidatesList/ButtonCandidatesList";
+import { toggleQuestion } from "../../utils/functions";
 import s from "./CandidateInfo.module.css";
 export const CandidateInfo = ({
   candidates,
@@ -29,13 +30,13 @@ export const CandidateInfo = ({
     );
     return questionsPerCategory;
   };
-  const toggleQuestion = (name, checked, setState) => {
-    setState((questions) => {
-      return !checked
-        ? questions.filter((x) => x !== name)
-        : [...questions, name];
-    });
-  };
+  // const toggleQuestion = (name, checked, setState) => {
+  //   setState((questions) => {
+  //     return !checked
+  //       ? questions.filter((x) => x !== name)
+  //       : [...questions, name];
+  //   });
+  // };
   useEffect(() => {
     getQuestionsPerCategory();
   }, [toggleQuestion]);

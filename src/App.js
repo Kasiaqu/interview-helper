@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { HomeView } from "./views/HomeView/HomeView";
 import { RegisterOrLoginView } from "./views/RegisterOrLoginView/RegisterOrLoginView";
 import { RecruiterPanelView } from "./views/RecruiterPanelView/RecruiterPanelView";
+import { AddCandidateView } from "./views/AddCandidateView/AddCandidateView";
 import { auth, logoutUser } from "./utils/db";
 import s from "./App.module.css";
 import { CandidateInfo } from "./components/CandidateInfo/CandidateInfo";
@@ -93,6 +94,7 @@ function App() {
             />
           }
         />
+        <Route path="addcandidate" element={<AddCandidateView />} />
         <Route
           path="panel/user/:candidateId"
           element={

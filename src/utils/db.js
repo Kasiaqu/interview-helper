@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import {
+  addDoc,
   collection,
   doc,
   getDocs,
@@ -72,6 +73,27 @@ const getQuestions = async (callback) => {
   }));
   callback(questionsList);
 };
+
+const addCandidate = async (
+  name,
+  lastName,
+  dateOfBirth,
+  bio,
+  skills,
+  projects,
+  hobbies
+) => {
+  await addDoc(collection(db, "candidates"), {
+    name,
+    ["last name"]: lastName,
+    ["date of birth"]: dateOfBirth,
+    bio,
+    skills,
+    projects,
+    hobbies,
+  });
+};
+
 export {
   db,
   auth,
@@ -80,4 +102,5 @@ export {
   logoutUser,
   getCandidates,
   getQuestions,
+  addCandidate,
 };

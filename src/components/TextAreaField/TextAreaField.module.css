@@ -1,0 +1,13 @@
+.label > p {
+  width: 150px;
+  font-weight: bold;
+}
+.label {
+  display: flex;
+  margin: 10px;
+}
+.textArea {
+  width: 250px;
+  height: 80px;
+  resize: none;
+}

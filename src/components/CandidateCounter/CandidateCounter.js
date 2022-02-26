@@ -15,7 +15,7 @@ export const CandidateCounter = ({ candidate }) => {
       </div>
       <div>
         {" "}
-        <p>{candidate.skills.map((skill) => skill).join(", ")}</p>
+        <p>{candidate.skills?.map((skill) => skill).join(", ")}</p>
       </div>
 
       <button onClick={() => displayInfo()}>See more information</button>

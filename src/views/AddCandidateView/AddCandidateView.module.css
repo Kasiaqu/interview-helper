@@ -1,0 +1,29 @@
+.addCandidateView {
+  width: 100vw;
+  height: 90vh;
+  overflow: auto;
+  display: flex;
+}
+.form {
+  width: 90%;
+  padding: 50px;
+  background-color: var(--background);
+  opacity: 0.9;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  border-radius: 20px;
+}
+.infoSection {
+  display: flex;
+  justify-content: space-between;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  width: 65%;
+}
+.skills {
+  width: 35%;
+}

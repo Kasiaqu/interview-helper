@@ -1,6 +1,7 @@
 .recruiterPanel {
   width: 100%;
   height: 90vh;
+  overflow: auto;
 }
 .headerPanel {
   padding: 10px 50px;

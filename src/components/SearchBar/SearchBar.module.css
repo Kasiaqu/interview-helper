@@ -1,0 +1,22 @@
+.label > p {
+  width: 150px;
+  font-weight: bold;
+}
+.label {
+  display: flex;
+  margin: 10px;
+  align-items: center;
+}
+.input {
+  width: 350px;
+  height: 30px;
+  border: none;
+  box-shadow: 0 0 2px var(--headerHover);
+  color: var(--textLight);
+  text-indent: 10px;
+}
+.input:focus {
+  outline: none !important;
+  border: none;
+  box-shadow: 0 0 4px var(--header);
+}

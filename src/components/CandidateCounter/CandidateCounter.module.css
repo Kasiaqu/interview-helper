@@ -1,11 +1,7 @@
 .candidateCounter {
-  background-color: var(--background);
-  opacity: 0.9;
   padding: 10px 50px;
-  margin: 20px 50px;
+  margin: 10px 50px;
   display: flex;
   justify-content: space-between;
   border-radius: 20px;
-  position: relative;
-  top: 30px;
 }

@@ -1,26 +1,44 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { CandidateCounter } from "../../components/CandidateCounter/CandidateCounter";
+import { SearchBar } from "../../components/SearchBar/SearchBar";
 import { getCandidates } from "../../utils/db";
 import s from "./RecruiterPanelView.module.css";
 
 export const RecruiterPanelView = ({ candidates, setCandidates }) => {
   const navigate = useNavigate();
+  const [searchName, setSearchName] = useState("");
+
+  const getSearch = (candidate) =>
+    candidate.name.toLowerCase().includes(searchName)
+      ? searchName
+      : candidate.lastName.toLowerCase().includes(searchName);
   useEffect(() => {
     getCandidates(setCandidates);
   }, []);
   return (
     <div className={s.recruiterPanel}>
       <div className={s.headerPanel}>
-        <p>List of candidates:</p>
+        <h3>List of candidates:</h3>
+        <div className={s.searchBarCounter}>
+          <p>Fill in name or surname candidate</p>
+          <SearchBar searchName={searchName} setSearchName={setSearchName} />
+        </div>
         <button onClick={() => navigate("/addcandidate")}>
-          {" "}
           Add a new candidate
         </button>
       </div>
-      {candidates.map((candidate) => {
-        return <CandidateCounter key={candidate.id} candidate={candidate} />;
-      })}
+      <div className={s.candidatesCounter}>
+        {candidates
+          .filter((candidate) =>
+            searchName === "" ? candidates : getSearch(candidate)
+          )
+          .map((candidate) => {
+            return (
+              <CandidateCounter key={candidate.id} candidate={candidate} />
+            );
+          })}
+      </div>
     </div>
   );
 };

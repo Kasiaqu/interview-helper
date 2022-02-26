@@ -1,4 +1,5 @@
 import { AnswersPerTechnologyCounter } from "../AnswersPerTechnologyCounter/AnswersPerTechnologyCounter";
+import { ButtonCandidatesList } from "../ButtonCandidatesList/ButtonCandidatesList";
 import s from "./CandidateFinish.module.css";
 export const CandidateFinish = ({
   answers,
@@ -40,6 +41,7 @@ export const CandidateFinish = ({
             ))}
           </div>
         </div>
+        <ButtonCandidatesList />
       </div>
     </div>
   );

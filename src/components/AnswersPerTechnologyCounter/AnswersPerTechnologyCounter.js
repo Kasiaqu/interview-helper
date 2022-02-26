@@ -1,3 +1,4 @@
+import s from "./AnswersPerTechnologyCounter.module.css";
 export const AnswersPerTechnologyCounter = ({
   technology,
   badAnswers,
@@ -11,7 +12,7 @@ export const AnswersPerTechnologyCounter = ({
       .map((answer) => <p key={answer.name}>{answer.name}</p>);
 
   return (
-    <div>
+    <div className={s.answersPerTechnologyCounter}>
       <h3>Technology: {technology[0].technology}</h3>
       <h3>Bad answers: {getAnswersPerCategory(badAnswers).length}</h3>
       {getAnswersPerCategory(badAnswers)}

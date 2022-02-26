@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getQuestions } from "../../utils/db";
 import { QuestionCounter } from "../QuestionCounter/QuestionCounter";
 import { TechnologySelect } from "../TechnologySelect/TechnologySelect";
+import { ButtonCandidatesList } from "../ButtonCandidatesList/ButtonCandidatesList";
 import s from "./CandidateInfo.module.css";
 export const CandidateInfo = ({
   candidates,
@@ -81,6 +82,7 @@ export const CandidateInfo = ({
               <button onClick={() => displayingSkills(candidate.skills)}>
                 Start interview
               </button>
+              <ButtonCandidatesList />
             </div>
           ) : null
         )}

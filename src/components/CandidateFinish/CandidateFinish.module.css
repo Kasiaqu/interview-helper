@@ -19,9 +19,14 @@
   overflow: auto;
   border-radius: 20px;
 }
+
 .summaryCounter > h2 {
   display: flex;
   justify-content: center;
+  color: var(--header);
+}
+.answersCounter > h2 {
+  color: var(--header);
 }
 .answersCounter {
   margin: 20px 30px;

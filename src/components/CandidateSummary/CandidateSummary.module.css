@@ -14,3 +14,15 @@
   overflow: auto;
   border-radius: 20px;
 }
+.questionCounter {
+  margin: 20px 0;
+  width: 100%;
+}
+.buttonCounter {
+  display: flex;
+  padding: 0 20px;
+  justify-content: space-between;
+}
+.buttonCounter button {
+  height: 15px;
+}

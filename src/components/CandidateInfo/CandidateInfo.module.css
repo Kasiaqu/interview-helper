@@ -2,26 +2,31 @@
   width: 100%;
   height: 90vh;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.counters {
+  display: flex;
+  overflow: auto;
 }
 .candidateCounter,
 .skillsCounter {
-  width: 40%;
+  width: 100%;
   padding: 50px;
   background-color: var(--background);
   opacity: 0.9;
   margin: 20px;
-  display: flex;
-  flex-direction: column;
-  overflow: auto;
   border-radius: 20px;
+  overflow: auto;
 }
 .candidateCounter > h2 {
   color: var(--header);
 }
-
-.skillsCounter {
-  width: 20%;
+.candidateCounter {
+  overflow: auto;
 }
+
 .skillsCounter > h2 {
   font-size: 20px;
   color: var(--header);
@@ -30,17 +35,13 @@
 .skills {
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  margin-bottom: 10px;
 }
 
 .counter {
   height: min-content;
-  padding: 10px 0;
 }
 .counter > p:first-child {
   font-weight: bold;
-  margin: 0;
 }
 .array {
   display: flex;

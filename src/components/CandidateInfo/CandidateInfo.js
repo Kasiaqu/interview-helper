@@ -43,94 +43,90 @@ export const CandidateInfo = ({
 
   return (
     <div className={s.candidateInfo}>
-      <div className={s.candidateCounter}>
-        <h2> Information about candidate</h2>
-        {candidates.map((candidate) =>
-          candidate.id === candidateId ? (
-            <div key={candidate.id} className={s.infoCounter}>
-              <div className={s.counter}>
-                <p>Name and last name: </p>
-                <p>{candidate.name + " " + candidate.lastName}</p>
-              </div>
-              <div className={s.counter}>
-                <p>Skills:</p>
-                <p className={s.array}>
-                  {candidate.skills.map((skill) => skill).join(", ")}
-                </p>
-              </div>
-              <div className={s.counter}>
-                <p>Year of birth: </p>
-                <p>{candidate.dateOfBirth}</p>
-              </div>
-              <div className={s.counter}>
-                <p>Experience:</p>
-                <p> {candidate.bio}</p>
-              </div>
-              <div className={s.counter}>
-                <p>Last projects: </p>
-                <div className={s.array}>
+      <div className={s.counters}>
+        <div className={s.candidateCounter}>
+          <h2> Information about candidate</h2>
+          {candidates.map((candidate) =>
+            candidate.id === candidateId ? (
+              <div key={candidate.id} className={s.infoCounter}>
+                <div className={s.counter}>
+                  <p>Name and last name: </p>
+                  <p>{candidate.name + " " + candidate.lastName}</p>
+                </div>
+                <div className={s.counter}>
+                  <p>Skills:</p>
                   <p className={s.array}>
-                    {candidate.projects.map((project) => project).join(", ")}
+                    {candidate.skills.map((skill) => skill).join(", ")}
                   </p>
                 </div>
+                <div className={s.counter}>
+                  <p>Year of birth: </p>
+                  <p>{candidate.dateOfBirth}</p>
+                </div>
+                <div className={s.counter}>
+                  <p>Experience:</p>
+                  <p> {candidate.bio}</p>
+                </div>
+                <div className={s.counter}>
+                  <p>Last projects: </p>
+                  <p> {candidate.projects}</p>
+                </div>
+                <div className={s.counter}>
+                  <p>Hobbies:</p>
+                  <p> {candidate.hobbies}</p>
+                </div>
+                <button onClick={() => displayingSkills(candidate.skills)}>
+                  Start interview
+                </button>
               </div>
-              <div className={s.counter}>
-                <p>Hobbies:</p>
-                <p className={s.array}>
-                  {candidate.hobbies.map((hobby) => hobby).join(", ")}
-                </p>
-              </div>
-              <button onClick={() => displayingSkills(candidate.skills)}>
-                Start interview
-              </button>
-              <ButtonCandidatesList />
-            </div>
-          ) : null
-        )}
-      </div>
-      {displaySkills ? (
-        <div className={s.skillsCounter}>
-          {!displayQuestions && (
-            <>
-              <h2>
-                How technologies do you want to ask the candidate about? Please
-                select below:
-              </h2>
-              <div className={s.skills}>
-                {skills.map((technology) => (
-                  <TechnologySelect
-                    key={technology}
-                    technology={technology}
-                    toggleQuestion={toggleQuestion}
-                    setSelectedCategories={setSelectedCategories}
-                  />
-                ))}
-              </div>
-              <button onClick={() => setDisplayQuestions(true)}>
-                {" "}
-                Display questions
-              </button>
-            </>
-          )}
-
-          {displayQuestions && (
-            <>
-              <h2>How questions do you want to ask the candidate about?</h2>
-              <div className={s.skills}>
-                {getQuestionsPerCategory()?.map((technology) => (
-                  <QuestionCounter
-                    key={technology.id}
-                    technology={technology}
-                    toggleQuestion={toggleQuestion}
-                    setSelectedQuestions={setSelectedQuestions}
-                  />
-                ))}
-              </div>
-              <button onClick={() => navigate("summary")}>Summary</button>
-            </>
+            ) : null
           )}
         </div>
-      ) : null}
+        {displaySkills ? (
+          <div className={s.skillsCounter}>
+            {!displayQuestions && (
+              <>
+                <h2>
+                  How technologies do you want to ask the candidate about?
+                  Please select below:
+                </h2>
+                <div className={s.skills}>
+                  {skills.map((technology) => (
+                    <TechnologySelect
+                      key={technology}
+                      technology={technology}
+                      toggleQuestion={toggleQuestion}
+                      setSelectedCategories={setSelectedCategories}
+                    />
+                  ))}
+                </div>
+                <button onClick={() => setDisplayQuestions(true)}>
+                  {" "}
+                  Display questions
+                </button>
+              </>
+            )}
+
+            {displayQuestions && (
+              <>
+                <h2>How questions do you want to ask the candidate about?</h2>
+                <div className={s.skills}>
+                  {getQuestionsPerCategory()?.map((technology) => (
+                    <QuestionCounter
+                      key={technology.id}
+                      technology={technology}
+                      toggleQuestion={toggleQuestion}
+                      setSelectedQuestions={setSelectedQuestions}
+                    />
+                  ))}
+                </div>
+                <button onClick={() => navigate("summary")}>Summary</button>
+              </>
+            )}
+          </div>
+        ) : null}
+      </div>
+      <ButtonCandidatesList />
     </div>
   );
 };

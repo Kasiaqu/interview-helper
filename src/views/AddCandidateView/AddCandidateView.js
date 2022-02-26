@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ButtonCandidatesList } from "../../components/ButtonCandidatesList/ButtonCandidatesList";
 import { LabelField } from "../../components/LabelField/LabelField";
 import { TechnologySelect } from "../../components/TechnologySelect/TechnologySelect";
 import { TextAreaField } from "../../components/TextAreaField/TextAreaField";
@@ -26,10 +27,9 @@ export const AddCandidateView = () => {
     setSkills([]);
     setHobbies("");
     setProjects("");
+    navigate("/panel");
   };
 
-  console.log(questionsList);
-  console.log(skills);
   useEffect(() => getQuestions(setQuestionsList), []);
 
   return (
@@ -80,10 +80,9 @@ export const AddCandidateView = () => {
             ))}
           </div>
         </div>
-        <button type="submit" onClick={() => navigate("/panel")}>
-          Add candidate
-        </button>
+        <button type="submit">Add candidate</button>
       </form>
+      <ButtonCandidatesList />
     </div>
   );
 };

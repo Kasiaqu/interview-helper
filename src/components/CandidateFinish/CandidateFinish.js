@@ -41,8 +41,8 @@ export const CandidateFinish = ({
             ))}
           </div>
         </div>
-        <ButtonCandidatesList />
       </div>
+      <ButtonCandidatesList />
     </div>
   );
 };

@@ -3,10 +3,12 @@
   height: 90vh;
   overflow: auto;
   display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .form {
   width: 90%;
-  padding: 50px;
+  padding: 30px;
   background-color: var(--background);
   opacity: 0.9;
   margin: 20px;
@@ -23,8 +25,8 @@
 .info {
   display: flex;
   flex-direction: column;
-  width: 65%;
+  width: 75%;
 }
 .skills {
-  width: 35%;
+  width: 20%;
 }

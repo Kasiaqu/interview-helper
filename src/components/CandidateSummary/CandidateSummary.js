@@ -50,8 +50,8 @@ export const CandidateSummary = ({ selectedQuestions, toggleAnswer }) => {
           </div>
         ))}
         <button onClick={() => navigate("finish")}>Finish the interview</button>
-        <ButtonCandidatesList />
       </div>
+      <ButtonCandidatesList />
     </div>
   );
 };

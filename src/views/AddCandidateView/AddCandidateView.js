@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { LabelField } from "../../components/LabelField/LabelField";
 import { TechnologySelect } from "../../components/TechnologySelect/TechnologySelect";
 import { TextAreaField } from "../../components/TextAreaField/TextAreaField";
@@ -14,7 +15,7 @@ export const AddCandidateView = () => {
   const [projects, setProjects] = useState([]);
   const [skills, setSkills] = useState([]);
   const [questionsList, setQuestionsList] = useState([]);
-
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     addCandidate(name, lastName, dateOfBirth, bio, skills, projects, hobbies);
@@ -79,7 +80,9 @@ export const AddCandidateView = () => {
             ))}
           </div>
         </div>
-        <button type="submit">Add candidate</button>
+        <button type="submit" onClick={() => navigate("/panel")}>
+          Add candidate
+        </button>
       </form>
     </div>
   );

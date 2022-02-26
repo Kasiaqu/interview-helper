@@ -7,7 +7,23 @@
   margin: 10px;
 }
 .textArea {
-  width: 250px;
-  height: 80px;
-  resize: none;
+  width: 350px;
+  min-height: 80px;
+  resize: vertical;
+  border: none;
+  box-shadow: 0 0 2px var(--headerHover);
+  color: var(--textLight);
+}
+
+.textArea:focus {
+  outline: none;
+  border: none;
+  box-shadow: 0 0 4px var(--header);
+}
+.textArea::-webkit-scrollbar {
+  width: 15px;
+}
+
+.textArea::-webkit-scrollbar-thumb {
+  border: 5px solid var(--background);
 }

@@ -8,13 +8,14 @@
   align-items: center;
 }
 .input {
-  width: 250px;
+  width: 350px;
   height: 20px;
+  border: none;
+  box-shadow: 0 0 2px var(--headerHover);
+  color: var(--textLight);
 }
-input {
-  -webkit-appearance: none;
-  box-shadow: none !important;
-}
-:-webkit-autofill {
-  color: #fff !important;
+.input:focus {
+  outline: none !important;
+  border: none;
+  box-shadow: 0 0 4px var(--header);
 }

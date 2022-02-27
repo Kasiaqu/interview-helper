@@ -43,8 +43,7 @@ function App() {
       answers.filter((answer) => answer.technology === technology)
     );
   };
-  const getAnswersPerResult = (answers) =>
-    answers.map((answer) => <p key={answer.name}>{answer.name}</p>);
+
   useEffect(() => {
     setBadAnswers(answers.filter((answer) => answer.button === "Bad"));
     setNotUnderstandAnswers(
@@ -124,7 +123,6 @@ function App() {
               notUnderstandAnswers={notUnderstandAnswers}
               goodAnswers={goodAnswers}
               veryGoodAnswers={veryGoodAnswers}
-              getAnswersPerResult={getAnswersPerResult}
               getTechnologies={getTechnologies}
             />
           }

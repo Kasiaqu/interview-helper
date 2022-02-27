@@ -1,8 +1,7 @@
 import { AnswersPerTechnologyCounter } from "../AnswersPerTechnologyCounter/AnswersPerTechnologyCounter";
 import { ButtonCandidatesList } from "../ButtonCandidatesList/ButtonCandidatesList";
-import { getAnswersPerResult } from "../../utils/functions";
 import s from "./CandidateFinish.module.css";
-import { AnswersPerResult } from "../AnswersPerResult/AnswerPerResult";
+import { AnswersPerResult } from "../AnswersPerResult/AnswersPerResult";
 export const CandidateFinish = ({
   answers,
   badAnswers,
@@ -29,14 +28,6 @@ export const CandidateFinish = ({
               title="Very Good Answers"
               answers={veryGoodAnswers}
             />
-            {/* <h3>Bad answers: {badAnswers.length}</h3>
-            {getAnswersPerResult(badAnswers)}
-            <h3>Not fully understand answers: {notUnderstandAnswers.length}</h3>
-            {getAnswersPerResult(notUnderstandAnswers)}
-            <h3>Good answers: {goodAnswers.length}</h3>
-            {getAnswersPerResult(goodAnswers)}
-            <h3>veryGoodAnswers: {veryGoodAnswers.length}</h3>
-            {getAnswersPerResult(veryGoodAnswers)} */}
           </div>
           <div className={s.answersCounter}>
             <h2>Answers per technology:</h2>

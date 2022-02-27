@@ -1,3 +1,4 @@
+import { AnswersPerTechnology } from "../AnswersPerTechnology/AnswersPerTechnology";
 import s from "./AnswersPerTechnologyCounter.module.css";
 export const AnswersPerTechnologyCounter = ({
   technology,
@@ -6,28 +7,29 @@ export const AnswersPerTechnologyCounter = ({
   goodAnswers,
   veryGoodAnswers,
 }) => {
-  const getAnswersPerCategory = (answers) =>
-    answers
-      .filter((answer) => answer.technology === technology[0].technology)
-      .map((answer) => <p key={answer.name}>{answer.name}</p>);
-
   return (
     <div className={s.answersPerTechnologyCounter}>
       <h3>Technology: {technology[0].technology}</h3>
-      <h3>Bad answers: {getAnswersPerCategory(badAnswers).length}</h3>
-      {getAnswersPerCategory(badAnswers)}
-      <h3>
-        Not understand answers:{" "}
-        {getAnswersPerCategory(notUnderstandAnswers).length}
-      </h3>
-      {getAnswersPerCategory(notUnderstandAnswers)}
-
-      <h3>Good answers: {getAnswersPerCategory(goodAnswers).length}</h3>
-      {getAnswersPerCategory(goodAnswers)}
-      <h3>
-        Very good answers: {getAnswersPerCategory(veryGoodAnswers).length}
-      </h3>
-      {getAnswersPerCategory(veryGoodAnswers)}
+      <AnswersPerTechnology
+        title="Bad answers"
+        answers={badAnswers}
+        technology={technology}
+      />
+      <AnswersPerTechnology
+        title="Not fully understand answers"
+        answers={notUnderstandAnswers}
+        technology={technology}
+      />
+      <AnswersPerTechnology
+        title="Good answers"
+        answers={goodAnswers}
+        technology={technology}
+      />
+      <AnswersPerTechnology
+        title="Very Good Answers"
+        answers={veryGoodAnswers}
+        technology={technology}
+      />
     </div>
   );
 };

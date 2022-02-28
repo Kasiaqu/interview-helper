@@ -44,7 +44,6 @@ function App() {
       answers.filter((answer) => answer.technology === technology)
     );
   };
-  console.log(answers);
   useEffect(() => {
     setBadAnswers(answers.filter((answer) => answer.button === "Bad"));
     setNotUnderstandAnswers(

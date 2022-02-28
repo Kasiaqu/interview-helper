@@ -8,7 +8,6 @@ export const CandidateSummary = ({
   answers,
 }) => {
   const navigate = useNavigate();
-  console.log(selectedQuestions);
 
   return (
     <div className={s.candidateSummary}>

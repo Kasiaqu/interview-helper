@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { AnswerButton } from "../AnswerButton/AnswerButtton";
 import s from "./CandidateSummaryQuestion.module.css";
 
 export const CandidateSummaryQuestion = ({
@@ -7,13 +7,6 @@ export const CandidateSummaryQuestion = ({
   toggleAnswer,
   answers,
 }) => {
-  const changeColor = (question, title) => {
-    return answers
-      .filter((answer) => answer.name === question)
-      .map((answer) => (answer.button === title ? s.buttonChecked : null));
-  };
-  useEffect(() => changeColor(), [toggleAnswer]);
-
   return (
     <div key={question.name} className={s.questionCounter}>
       <h3>
@@ -21,38 +14,34 @@ export const CandidateSummaryQuestion = ({
       </h3>
       <p>{question.answer}</p>
       <div className={s.buttonCounter}>
-        <button
-          className={changeColor(question.name, "Bad")}
-          onClick={() =>
-            toggleAnswer("Bad", question.name, question.technology)
-          }
-        >
-          Bad answer
-        </button>
-        <button
-          className={changeColor(question.name, "Not understand")}
-          onClick={() =>
-            toggleAnswer("Not understand", question.name, question.technology)
-          }
-        >
-          Not fully understand this question
-        </button>
-        <button
-          className={changeColor(question.name, "Good")}
-          onClick={() =>
-            toggleAnswer("Good", question.name, question.technology)
-          }
-        >
-          Good answer
-        </button>
-        <button
-          className={changeColor(question.name, "Very good")}
-          onClick={() =>
-            toggleAnswer("Very good", question.name, question.technology)
-          }
-        >
-          Very good answer
-        </button>
+        <AnswerButton
+          question={question}
+          toggleAnswer={toggleAnswer}
+          title="Bad answer"
+          name="Bad"
+          answers={answers}
+        />
+        <AnswerButton
+          question={question}
+          toggleAnswer={toggleAnswer}
+          title="Not fully understand this question"
+          name="Not understand"
+          answers={answers}
+        />
+        <AnswerButton
+          question={question}
+          toggleAnswer={toggleAnswer}
+          title="Good answer"
+          name="Good"
+          answers={answers}
+        />
+        <AnswerButton
+          question={question}
+          toggleAnswer={toggleAnswer}
+          title="Very good answer"
+          name="Very good"
+          answers={answers}
+        />
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ export const CandidateFinish = ({
   goodAnswers,
   veryGoodAnswers,
   getTechnologies,
+  setAnswers,
 }) => {
   const sortingAnswers = () => {
     const sortedArray = [
@@ -54,7 +55,7 @@ export const CandidateFinish = ({
           </div>
         </div>
       </div>
-      <ButtonCandidatesList />
+      <ButtonCandidatesList answers={answers} setAnswers={setAnswers} />
     </div>
   );
 };

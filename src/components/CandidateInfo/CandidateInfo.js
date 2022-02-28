@@ -6,11 +6,7 @@ import { TechnologySelect } from "../TechnologySelect/TechnologySelect";
 import { ButtonCandidatesList } from "../ButtonCandidatesList/ButtonCandidatesList";
 import { toggleQuestion } from "../../utils/functions";
 import s from "./CandidateInfo.module.css";
-export const CandidateInfo = ({
-  candidates,
-  selectedQuestions,
-  setSelectedQuestions,
-}) => {
+export const CandidateInfo = ({ candidates, setSelectedQuestions }) => {
   const [skills, setSkills] = useState([]);
   const [displaySkills, setDisplaySkills] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -22,6 +18,7 @@ export const CandidateInfo = ({
     setSkills(skills);
     setDisplaySkills(true);
   };
+
   useEffect(() => getQuestions(setQuestionsList), []);
 
   const getQuestionsPerCategory = () => {
@@ -116,7 +113,6 @@ export const CandidateInfo = ({
                       key={technology.id}
                       technology={technology}
                       toggleQuestion={toggleQuestion}
-                      setSelectedQuestions={setSelectedQuestions}
                     />
                   ))}
                 </div>

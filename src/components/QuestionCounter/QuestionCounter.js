@@ -1,10 +1,6 @@
 import { QuestionSelect } from "../QuestionSelect/QuestionSelect";
 import s from "./QuestionCounter.module.css";
-export const QuestionCounter = ({
-  technology,
-  toggleQuestion,
-  setSelectedQuestions,
-}) => {
+export const QuestionCounter = ({ technology, toggleQuestion }) => {
   return (
     <>
       <h3>{technology.id}</h3>
@@ -15,7 +11,6 @@ export const QuestionCounter = ({
             question={question}
             technology={technology}
             toggleQuestion={toggleQuestion}
-            setSelectedQuestions={setSelectedQuestions}
           />
         ))}
       </div>

@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { HomeView } from "./views/HomeView/HomeView";
 import { RegisterOrLoginView } from "./views/RegisterOrLoginView/RegisterOrLoginView";
 import { RecruiterPanelView } from "./views/RecruiterPanelView/RecruiterPanelView";
@@ -9,8 +9,8 @@ import s from "./App.module.css";
 import { CandidateInfo } from "./components/CandidateInfo/CandidateInfo";
 import { CandidateSummary } from "./components/CandidateSummary/CandidateSummary";
 import { CandidateFinish } from "./components/CandidateFinish/CandidateFinish";
-import { Navbar } from "./components/NavBar/NavBar";
 import logo from "./images/pngwing.png";
+import { selectedQuestionsContext } from "./contexts/SelectedQuestionsContext";
 function App() {
   const [isRegistered, setIsRegistered] = useState("");
   const [currentUser, setCurrentUser] = useState(null);
@@ -25,9 +25,9 @@ function App() {
 
   const toggleLogoutUser = () => {
     logoutUser();
-    navigate("/");
+    comeToHomeView();
   };
-
+  console.log(selectedQuestions);
   const toggleAnswer = (button, name, technology) => {
     const newAnswers = answers.filter((answer) => answer.name !== name);
     setAnswers(newAnswers);
@@ -44,6 +44,12 @@ function App() {
       answers.filter((answer) => answer.technology === technology)
     );
   };
+
+  const comeToHomeView = () => {
+    setSelectedQuestions([]);
+    setAnswers([]);
+    navigate("/");
+  };
   useEffect(() => {
     setBadAnswers(answers.filter((answer) => answer.button === "Bad"));
     setNotUnderstandAnswers(
@@ -59,77 +65,71 @@ function App() {
   }, []);
 
   return (
-    <div className={s.app}>
-      <div className={s.navBar}>
-        <div className={s.navBarLogo} onClick={() => navigate("/")}>
-          <img src={logo} height="100%" />
-          <h1>Interview Helper</h1>
-        </div>
+    <selectedQuestionsContext.Provider
+      value={[selectedQuestions, setSelectedQuestions]}
+    >
+      <div className={s.app}>
+        <div className={s.navBar}>
+          <div className={s.navBarLogo} onClick={() => comeToHomeView()}>
+            <img src={logo} height="100%" />
+            <h1>Interview Helper</h1>
+          </div>
 
-        {currentUser && (
-          <button onClick={() => toggleLogoutUser()}>Logout</button>
-        )}
+          {currentUser && (
+            <button onClick={() => toggleLogoutUser()}>Logout</button>
+          )}
+        </div>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <HomeView
+                setIsRegistered={setIsRegistered}
+                currentUser={currentUser}
+              />
+            }
+          />
+          <Route
+            path="login"
+            element={<RegisterOrLoginView isRegistered={isRegistered} />}
+          />
+          <Route
+            path="panel"
+            element={
+              <RecruiterPanelView
+                candidates={candidates}
+                setCandidates={setCandidates}
+              />
+            }
+          />
+          <Route path="addcandidate" element={<AddCandidateView />} />
+          <Route
+            path="panel/user/:candidateId"
+            element={<CandidateInfo candidates={candidates} />}
+          />
+          <Route
+            path="panel/user/:candidateId/summary"
+            element={
+              <CandidateSummary toggleAnswer={toggleAnswer} answers={answers} />
+            }
+          />
+          <Route
+            path="panel/user/:candidateId/summary/finish"
+            element={
+              <CandidateFinish
+                answers={answers}
+                badAnswers={badAnswers}
+                notUnderstandAnswers={notUnderstandAnswers}
+                goodAnswers={goodAnswers}
+                veryGoodAnswers={veryGoodAnswers}
+                getTechnologies={getTechnologies}
+                setAnswers={setAnswers}
+              />
+            }
+          />
+        </Routes>
       </div>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <HomeView
-              setIsRegistered={setIsRegistered}
-              currentUser={currentUser}
-            />
-          }
-        />
-        <Route
-          path="login"
-          element={<RegisterOrLoginView isRegistered={isRegistered} />}
-        />
-        <Route
-          path="panel"
-          element={
-            <RecruiterPanelView
-              candidates={candidates}
-              setCandidates={setCandidates}
-            />
-          }
-        />
-        <Route path="addcandidate" element={<AddCandidateView />} />
-        <Route
-          path="panel/user/:candidateId"
-          element={
-            <CandidateInfo
-              candidates={candidates}
-              selectedQuestions={selectedQuestions}
-              setSelectedQuestions={setSelectedQuestions}
-            />
-          }
-        />
-        <Route
-          path="panel/user/:candidateId/summary"
-          element={
-            <CandidateSummary
-              selectedQuestions={selectedQuestions}
-              toggleAnswer={toggleAnswer}
-              answers={answers}
-            />
-          }
-        />
-        <Route
-          path="panel/user/:candidateId/summary/finish"
-          element={
-            <CandidateFinish
-              selectedQuestions={selectedQuestions}
-              answers={answers}
-              badAnswers={badAnswers}
-              notUnderstandAnswers={notUnderstandAnswers}
-              goodAnswers={goodAnswers}
-              veryGoodAnswers={veryGoodAnswers}
-              getTechnologies={getTechnologies}
-            />
-          }
-        />
-      </Routes>
-    </div>
+    </selectedQuestionsContext.Provider>
   );
 }
 

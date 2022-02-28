@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { selectedQuestionsContext } from "../../contexts/SelectedQuestionsContext";
 import s from "../CandidateSummaryQuestion/CandidateSummaryQuestion.module.css";
 
 export const AnswerButton = ({
@@ -13,7 +14,9 @@ export const AnswerButton = ({
       .filter((answer) => answer.name === question)
       .map((answer) => (answer.button === title ? s.buttonChecked : null));
   };
-  useEffect(() => changeColor(), [toggleAnswer]);
+  useEffect(() => {
+    changeColor();
+  }, [toggleAnswer]);
   return (
     <button
       className={changeColor(question.name, name)}

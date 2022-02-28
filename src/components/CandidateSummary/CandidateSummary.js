@@ -1,12 +1,13 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { selectedQuestionsContext } from "../../contexts/SelectedQuestionsContext";
 import { ButtonCandidatesList } from "../ButtonCandidatesList/ButtonCandidatesList";
 import { CandidateSummaryQuestion } from "../CandidateSummaryQuestion/CandidateSummaryQuestion";
 import s from "./CandidateSummary.module.css";
-export const CandidateSummary = ({
-  selectedQuestions,
-  toggleAnswer,
-  answers,
-}) => {
+export const CandidateSummary = ({ toggleAnswer, answers }) => {
+  const [selectedQuestions, setSelectedQuestions] = useContext(
+    selectedQuestionsContext
+  );
   const navigate = useNavigate();
 
   return (

@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { selectedQuestionsContext } from "../../contexts/SelectedQuestionsContext";
 import s from "./QuestionSelect.module.css";
-export const QuestionSelect = ({
-  question,
-  toggleQuestion,
-  setSelectedQuestions,
-}) => {
+export const QuestionSelect = ({ question, toggleQuestion }) => {
   const [checked, setChecked] = useState(false);
+  const [selectedQuestions, setSelectedQuestions] = useContext(
+    selectedQuestionsContext
+  );
   useEffect(() => {
     toggleQuestion(question, checked, setSelectedQuestions);
   }, [checked]);

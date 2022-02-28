@@ -8,6 +8,7 @@
   padding: 10px 50px;
   margin: 0 50px;
   display: flex;
+  flex-direction: column;
   background-color: var(--background);
   opacity: 0.9;
   justify-content: space-between;
@@ -17,14 +18,19 @@
   position: relative;
   top: 30px;
 }
-.searchBarCounter {
+.headerPanelBar {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
+}
+
+.searchBarCounter {
   overflow: auto;
+  width: 100%;
 }
 .searchBarCounter > p {
-  margin: 0;
+  margin: 0 15px;
 }
 .headerPanel button {
   width: 300px;

@@ -19,15 +19,18 @@ export const RecruiterPanelView = ({ candidates, setCandidates }) => {
   return (
     <div className={s.recruiterPanel}>
       <div className={s.headerPanel}>
-        <h3>List of candidates:</h3>
+        <div className={s.headerPanelBar}>
+          <h3>List of candidates:</h3>
+          <button onClick={() => navigate("/addcandidate")}>
+            Add a new candidate
+          </button>
+        </div>
         <div className={s.searchBarCounter}>
-          <p>Fill in name or surname candidate</p>
+          {/* <p>Fill in name or surname candidate</p> */}
           <SearchBar searchName={searchName} setSearchName={setSearchName} />
         </div>
-        <button onClick={() => navigate("/addcandidate")}>
-          Add a new candidate
-        </button>
       </div>
+
       <div className={s.candidatesCounter}>
         {candidates
           .filter((candidate) =>

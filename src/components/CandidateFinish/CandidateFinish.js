@@ -10,6 +10,17 @@ export const CandidateFinish = ({
   veryGoodAnswers,
   getTechnologies,
 }) => {
+  const sortingAnswers = () => {
+    const sortedArray = [
+      [badAnswers, { title: "Bad answers" }],
+      [notUnderstandAnswers, { title: "Not fully understand answers" }],
+      [goodAnswers, { title: "Good answers" }],
+      [veryGoodAnswers, { title: "Very good answers" }],
+    ];
+    return sortedArray.sort((n1, n2) => n2[0].length - n1[0].length);
+  };
+  sortingAnswers();
+  console.log(sortingAnswers());
   return (
     <div className={s.candidateSummary}>
       <div className={s.summaryCounter}>
@@ -18,16 +29,14 @@ export const CandidateFinish = ({
         <div className={s.summary}>
           <div className={s.answersCounter}>
             <h2>Answers per results</h2>
-            <AnswersPerResult title="Bad answers" answers={badAnswers} />
-            <AnswersPerResult
-              title="Not fully understand answers"
-              answers={notUnderstandAnswers}
-            />
-            <AnswersPerResult title="Good answers" answers={goodAnswers} />
-            <AnswersPerResult
-              title="Very Good Answers"
-              answers={veryGoodAnswers}
-            />
+
+            {sortingAnswers().map((answers) => (
+              <AnswersPerResult
+                key={answers[1].title}
+                title={answers[1].title}
+                answers={answers[0]}
+              />
+            ))}
           </div>
           <div className={s.answersCounter}>
             <h2>Answers per technology:</h2>

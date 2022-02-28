@@ -1,53 +1,26 @@
 import { useNavigate } from "react-router-dom";
 import { ButtonCandidatesList } from "../ButtonCandidatesList/ButtonCandidatesList";
+import { CandidateSummaryQuestion } from "../CandidateSummaryQuestion/CandidateSummaryQuestion";
 import s from "./CandidateSummary.module.css";
-export const CandidateSummary = ({ selectedQuestions, toggleAnswer }) => {
+export const CandidateSummary = ({
+  selectedQuestions,
+  toggleAnswer,
+  answers,
+}) => {
   const navigate = useNavigate();
+  console.log(selectedQuestions);
 
   return (
     <div className={s.candidateSummary}>
       <div className={s.summaryCounter}>
         {selectedQuestions.map((question, index) => (
-          <div key={question.name} className={s.questionCounter}>
-            <h3>
-              {index + 1}. {question.name}
-            </h3>
-            <p>{question.answer}</p>
-            <div className={s.buttonCounter}>
-              <button
-                onClick={() =>
-                  toggleAnswer("Bad", question.name, question.technology)
-                }
-              >
-                Bad answer
-              </button>
-              <button
-                onClick={() =>
-                  toggleAnswer(
-                    "Not understand",
-                    question.name,
-                    question.technology
-                  )
-                }
-              >
-                Not fully understand this question
-              </button>
-              <button
-                onClick={() =>
-                  toggleAnswer("Good", question.name, question.technology)
-                }
-              >
-                Good answer
-              </button>
-              <button
-                onClick={() =>
-                  toggleAnswer("Very good", question.name, question.technology)
-                }
-              >
-                Very good answer
-              </button>
-            </div>
-          </div>
+          <CandidateSummaryQuestion
+            key={question.name}
+            question={question}
+            index={index}
+            toggleAnswer={toggleAnswer}
+            answers={answers}
+          />
         ))}
         <button onClick={() => navigate("finish")}>Finish the interview</button>
       </div>

@@ -1,0 +1,11 @@
+.buttonCounter {
+  display: flex;
+  padding: 0 20px;
+  justify-content: space-between;
+}
+.buttonCounter button {
+  height: 15px;
+}
+.buttonChecked {
+  background-color: var(--headerHover) !important;
+}

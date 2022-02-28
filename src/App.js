@@ -27,6 +27,7 @@ function App() {
     logoutUser();
     navigate("/");
   };
+
   const toggleAnswer = (button, name, technology) => {
     const newAnswers = answers.filter((answer) => answer.name !== name);
     setAnswers(newAnswers);
@@ -43,7 +44,7 @@ function App() {
       answers.filter((answer) => answer.technology === technology)
     );
   };
-
+  console.log(answers);
   useEffect(() => {
     setBadAnswers(answers.filter((answer) => answer.button === "Bad"));
     setNotUnderstandAnswers(
@@ -110,6 +111,7 @@ function App() {
             <CandidateSummary
               selectedQuestions={selectedQuestions}
               toggleAnswer={toggleAnswer}
+              answers={answers}
             />
           }
         />

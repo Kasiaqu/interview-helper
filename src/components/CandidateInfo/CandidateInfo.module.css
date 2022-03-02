@@ -1,40 +1,41 @@
 .candidateInfo {
-  width: 100%;
+  width: 100vw;
   height: 90vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 .counters {
   display: flex;
-  overflow: auto;
+  align-items: center;
+  justify-content: space-between;
+  height: 80vh;
+  width: 100vw;
 }
 .candidateCounter,
 .skillsCounter {
-  width: 100%;
-  padding: 50px;
+  width: 50vw;
+  height: 60vh;
+  padding: var(--candidatePadding);
   background-color: var(--background);
   opacity: 0.9;
-  margin: 20px;
-  border-radius: 20px;
+  margin: var(--fieldMargin);
+  border-radius: var(--fieldBorderRadius);
   overflow: auto;
 }
-.candidateCounter > h2 {
+
+.counters h2 {
+  font-size: var(--fontSizeH2);
   color: var(--header);
 }
 .candidateCounter {
   overflow: auto;
 }
 
-.skillsCounter > h2 {
-  font-size: 20px;
-  color: var(--header);
-}
-
 .skills {
   display: flex;
   flex-direction: column;
+  margin: 1rem 0 2rem 0;
 }
 
 .counter {

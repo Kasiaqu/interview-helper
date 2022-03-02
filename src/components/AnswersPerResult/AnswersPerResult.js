@@ -1,6 +1,7 @@
+import s from "./AnswersPerResult.module.css";
 export const AnswersPerResult = ({ title, answers }) => {
   return (
-    <div>
+    <div className={s.answersPerResult}>
       <h3>
         {title}: {answers.length}
       </h3>

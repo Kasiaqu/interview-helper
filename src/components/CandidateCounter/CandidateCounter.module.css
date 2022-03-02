@@ -1,7 +1,15 @@
 .candidateCounter {
-  padding: 10px 50px;
-  margin: 10px 50px;
+  margin: 1rem 0;
   display: flex;
   justify-content: space-between;
-  border-radius: 20px;
+  border-radius: var(--fieldBorderRadius);
+}
+.candidateName {
+  width: 35%;
+}
+.candidateSkills {
+  width: 50%;
+}
+.candidateCounter > button {
+  width: 15%;
 }

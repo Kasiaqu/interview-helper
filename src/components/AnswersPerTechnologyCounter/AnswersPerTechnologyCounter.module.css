@@ -1,11 +1,10 @@
 h3 {
   color: var(--text);
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
 }
 .answersPerTechnologyCounter > h3 {
-  margin: 15px 0;
-  font-size: 20px;
-  text-decoration: underline;
-  color: var(--text);
-  margin-bottom: 10px;
+  margin: 1.5rem 0;
+  font-size: var(--fontSizeH3);
+  color: var(--header);
+  margin-bottom: 1rem;
 }

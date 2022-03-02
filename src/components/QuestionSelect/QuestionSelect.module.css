@@ -1,16 +1,23 @@
+.label {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  left: 2rem;
+}
 .input {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   display: inline-block;
-  width: 25px;
-  height: 25px;
+  width: 2.5rem;
+  height: 2.5rem;
   position: relative;
-  left: -20px;
-  padding: 6px;
+  left: -2rem;
+  padding: 0.6rem;
   background-clip: content-box;
   border: 1px solid #bbbbbb;
-  border-radius: 6px;
+  border-radius: 0.6rem;
   background-color: #e7e6e7;
 }
 .input:checked {
@@ -20,12 +27,8 @@
 .input:focus {
   outline: none !important;
 }
-.label {
-  position: relative;
-}
-.label > p {
+
+/* .label > p {
   margin: 0;
   position: relative;
-  left: 20px;
-  top: -35px;
-}
+\} */

@@ -3,20 +3,25 @@
   height: 90vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 .headerPanel {
-  padding: 10px 50px;
-  margin: 0 50px;
+  padding: var(--fieldPadding);
+  width: var(--fieldWidth);
   display: flex;
   flex-direction: column;
   background-color: var(--background);
   opacity: 0.9;
   justify-content: space-between;
   align-items: center;
-  font-size: 20px;
-  border-radius: 20px;
+  border-radius: var(--fieldBorderRadius);
   position: relative;
   top: 30px;
+}
+.headerPanelBar > h2 {
+  font-size: var(--fontSizeH2);
+  color: var(--header);
+  margin: 2rem;
 }
 .headerPanelBar {
   display: flex;
@@ -29,20 +34,20 @@
   overflow: auto;
   width: 100%;
 }
-.searchBarCounter > p {
-  margin: 0 15px;
-}
+
 .headerPanel button {
-  width: 300px;
-  margin: 10px;
+  width: 30rem;
+  margin: 1rem;
 }
 .candidatesCounter {
   background-color: var(--background);
   opacity: 0.9;
-  margin: 50px 50px;
+  width: var(--fieldWidth);
+  margin: 5rem;
+  padding: var(--fieldPadding);
   overflow: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-radius: 20px;
+  border-radius: var(--fieldBorderRadius);
 }

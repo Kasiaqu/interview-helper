@@ -8,12 +8,12 @@ export const CandidateCounter = ({ candidate }) => {
   };
   return (
     <div className={s.candidateCounter}>
-      <div>
+      <div className={s.candidateName}>
         <p>
           {candidate.name} {candidate.lastName}
         </p>
       </div>
-      <div>
+      <div className={s.candidateSkills}>
         {" "}
         <p>{candidate.skills?.map((skill) => skill).join(", ")}</p>
       </div>

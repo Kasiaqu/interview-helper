@@ -1,11 +1,16 @@
+.candidateSummaryQuestion > h2 {
+  font-size: var(--fontSizeH3);
+  color: var(--header);
+}
+
 .buttonCounter {
   display: flex;
-  padding: 0 20px;
+  padding: 0 2rem;
   justify-content: space-between;
 }
 .buttonCounter button {
-  height: 15px;
+  height: 1.5rem;
 }
 .buttonChecked {
-  background-color: var(--headerHover) !important;
+  background-color: var(--headerHover);
 }

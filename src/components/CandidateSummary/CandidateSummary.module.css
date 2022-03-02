@@ -6,17 +6,22 @@
   align-items: center;
 }
 .summaryCounter {
-  width: 80%;
-  padding: 50px;
+  width: 80vw;
+  padding: var(--candidatePadding);
   background-color: var(--background);
   opacity: 0.9;
-  margin: 50px;
+  margin: var(--fieldMargin);
   display: flex;
   flex-direction: column;
+  align-items: stretch;
   overflow: auto;
-  border-radius: 20px;
+  border-radius: var(--fieldBorderRadius);
+}
+.summaryCounter > button {
+  width: 20rem;
+  margin-top: 5rem;
 }
 .questionCounter {
-  margin: 20px 0;
+  margin: 2rem 0;
   width: 100%;
 }

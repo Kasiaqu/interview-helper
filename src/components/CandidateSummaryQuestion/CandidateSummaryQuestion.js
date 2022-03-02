@@ -8,10 +8,10 @@ export const CandidateSummaryQuestion = ({
   answers,
 }) => {
   return (
-    <div key={question.name} className={s.questionCounter}>
-      <h3>
+    <div key={question.name} className={s.candidateSummaryQuestion}>
+      <h2>
         {index + 1}. {question.name}
-      </h3>
+      </h2>
       <p>{question.answer}</p>
       <div className={s.buttonCounter}>
         <AnswerButton

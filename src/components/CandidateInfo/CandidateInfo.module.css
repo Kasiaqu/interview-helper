@@ -19,7 +19,7 @@
   padding: var(--candidatePadding);
   background-color: var(--background);
   opacity: 0.9;
-  margin: var(--fieldMargin);
+  margin: var(--fieldMargin) 3rem;
   border-radius: var(--fieldBorderRadius);
   overflow: auto;
 }

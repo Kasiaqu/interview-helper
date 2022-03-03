@@ -12,7 +12,7 @@
   justify-content: center;
   align-items: center;
   text-align: justify;
-  height: 30vh;
+  height: 30rem;
   width: 60vw;
   margin: 5rem auto;
   padding: var(--fieldPadding);
@@ -24,4 +24,7 @@
   color: var(--header);
   font-family: "Reenie Beanie", cursive;
   font-size: var(--fontSizeH1);
+}
+.info > p {
+  text-align: center;
 }

@@ -8,9 +8,9 @@ export const ButtonCandidatesList = ({ setAnswers }) => {
   );
   const navigate = useNavigate();
   const comeToHomeView = () => {
+    navigate("/panel");
     setSelectedQuestions([]);
     setAnswers([]);
-    navigate("/panel");
   };
   return (
     <button className={s.button} onClick={() => comeToHomeView()}>

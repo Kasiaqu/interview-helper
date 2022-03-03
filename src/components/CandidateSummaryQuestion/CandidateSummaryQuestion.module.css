@@ -5,11 +5,12 @@
 
 .buttonCounter {
   display: flex;
-  padding: 0 2rem;
+  padding: 0 1rem;
   justify-content: space-between;
 }
 .buttonCounter button {
   height: 1.5rem;
+  padding: 2rem 0.7rem;
 }
 .buttonChecked {
   background-color: var(--headerHover);

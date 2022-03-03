@@ -20,6 +20,9 @@
   border-radius: 0.6rem;
   background-color: #e7e6e7;
 }
+.label > p {
+  width: 90%;
+}
 .input:checked {
   background-color: var(--header);
 }
@@ -27,8 +30,3 @@
 .input:focus {
   outline: none !important;
 }
-
-/* .label > p {
-  margin: 0;
-  position: relative;
-\} */

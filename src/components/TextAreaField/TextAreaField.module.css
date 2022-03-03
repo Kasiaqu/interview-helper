@@ -1,14 +1,15 @@
 .label > p {
   width: 150px;
   font-weight: bold;
+  color: var(--header);
 }
 .label {
   display: flex;
   margin: 10px;
 }
 .textArea {
-  width: 350px;
-  min-height: 80px;
+  width: 35rem;
+  min-height: 8rem;
   resize: vertical;
   border: none;
   box-shadow: 0 0 2px var(--headerHover);
@@ -20,8 +21,9 @@
   border: none;
   box-shadow: 0 0 4px var(--header);
 }
+
 .textArea::-webkit-scrollbar {
-  width: 15px;
+  width: 1.5rem;
 }
 
 .textArea::-webkit-scrollbar-thumb {

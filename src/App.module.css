@@ -1,5 +1,6 @@
 :root {
   font-size: 62.5%;
+
   /* colors */
   --buttonBackground: #ede2a6bd;
   --buttonBackgroundHover: #f3f0dcbd;
@@ -18,10 +19,13 @@
   --fieldMargin: 5rem;
   --fontSizeText: 1.5rem;
   --fontSizeH1: 6rem;
-  --fontSizeH2: 2.7rem;
-  --fontSizeH3: 2.1rem;
+  --fontSizeH2: 2.6rem;
+  --fontSizeH3: 2rem;
 }
-
+html {
+  min-width: 800px;
+  min-height: 600px;
+}
 body {
   font-family: "Karla", "sans-serif";
   box-sizing: border-box;

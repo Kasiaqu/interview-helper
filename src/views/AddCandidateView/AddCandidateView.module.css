@@ -43,3 +43,8 @@
   font-size: var(--fontSizeH3);
   color: var(--header);
 }
+.errorMessage {
+  display: inline-block;
+  height: 1rem;
+  color: var(--textError);
+}

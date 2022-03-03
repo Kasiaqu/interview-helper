@@ -10,7 +10,7 @@ export const CandidateSummaryQuestion = ({
   return (
     <div key={question.name} className={s.candidateSummaryQuestion}>
       <h2>
-        {index + 1}. {question.name}
+        {index + 1}. {question.name} ({question.time} min.)
       </h2>
       <p>{question.answer}</p>
       <div className={s.buttonCounter}>

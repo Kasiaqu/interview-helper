@@ -6,7 +6,7 @@
   align-items: center;
 }
 .summaryCounter {
-  height: 80vh;
+  height: 100%;
   width: 80vw;
   padding: var(--candidatePadding);
   background-color: var(--background);

@@ -11,6 +11,20 @@ To start you just need to click register or login.
 - CSS Modules
 - Firebase
 
+## How to start
+
+In the project directory, you can run
+
+```
+npm install
+```
+
+and next
+
+```
+npm start
+```
+
 ## Views
 
 After logging in you can see the list of candidates.

@@ -94,7 +94,7 @@ export const AddCandidateView = () => {
             ))}
           </div>
         </div>
-        <p>{message}</p>
+        <p className={s.errorMessage}>{message}</p>
         <button type="submit">Add candidate</button>
       </form>
       <ButtonCandidatesList />

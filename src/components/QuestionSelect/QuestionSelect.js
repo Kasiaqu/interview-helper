@@ -17,7 +17,9 @@ export const QuestionSelect = ({ question, toggleQuestion }) => {
         onChange={() => setChecked(!checked)}
         className={s.input}
       />
-      <p>{question.name}</p>
+      <p>
+        {question.name} ({question.time} min.)
+      </p>
     </label>
   );
 };

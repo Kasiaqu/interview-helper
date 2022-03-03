@@ -4,12 +4,12 @@
   /* colors */
   --buttonBackground: #ede2a6bd;
   --buttonBackgroundHover: #f3f0dcbd;
-  --header: #b99e17;
-  --headerHover: #c1ac41;
+  --header: #b39c2a;
+  --headerHover: #ccbd68;
   --background: #e9e9e1;
-  --text: #151515;
-  --textLight: #464141;
-
+  --text: #333131;
+  --textLight: #646046;
+  --textError: #9b2b1c;
   /* width */
   --fieldWidth: 80vw;
   --fieldHeight: 90vh;
@@ -90,7 +90,7 @@ button {
   padding: 1.5rem;
   font-size: 2rem;
   font: inherit;
-  color: var(--black);
+  color: var(--textLight);
   background-color: var(--buttonBackground);
   border: 2px solid #cac4a2bd;
   border-radius: 10px;

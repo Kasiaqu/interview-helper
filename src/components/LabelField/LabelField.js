@@ -7,6 +7,7 @@ export const LabelField = ({ type, title, state, setState }) => {
         className={s.input}
         type={type}
         value={state}
+        minLength={4}
         onChange={(e) => setState(e.target.value)}
       ></input>
     </label>

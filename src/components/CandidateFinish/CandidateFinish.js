@@ -20,7 +20,6 @@ export const CandidateFinish = ({
     ];
     return sortedArray.sort((n1, n2) => n2[0].length - n1[0].length);
   };
-  console.log(goodAnswers);
   sortingAnswers();
   return (
     <div className={s.candidateSummary}>

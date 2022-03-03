@@ -47,3 +47,8 @@
 .array {
   display: flex;
 }
+.errorMessage {
+  display: inline-block;
+  height: 1rem;
+  color: var(--textError);
+}

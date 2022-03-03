@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getQuestions } from "../../utils/db";
 import { QuestionCounter } from "../QuestionCounter/QuestionCounter";
@@ -6,12 +6,17 @@ import { TechnologySelect } from "../TechnologySelect/TechnologySelect";
 import { ButtonCandidatesList } from "../ButtonCandidatesList/ButtonCandidatesList";
 import { toggleQuestion } from "../../utils/functions";
 import s from "./CandidateInfo.module.css";
-export const CandidateInfo = ({ candidates, setSelectedQuestions }) => {
+import { selectedQuestionsContext } from "../../contexts/SelectedQuestionsContext";
+export const CandidateInfo = ({ candidates }) => {
   const [skills, setSkills] = useState([]);
   const [displaySkills, setDisplaySkills] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [questionsList, setQuestionsList] = useState([]);
   const [displayQuestions, setDisplayQuestions] = useState(false);
+  const [message, setMessage] = useState("");
+  const [selectedQuestions, setSelectedQuestions] = useContext(
+    selectedQuestionsContext
+  );
   const candidateId = useParams().candidateId;
   const navigate = useNavigate();
   const displayingSkills = (skills) => {
@@ -27,13 +32,7 @@ export const CandidateInfo = ({ candidates, setSelectedQuestions }) => {
     );
     return questionsPerCategory;
   };
-  // const toggleQuestion = (name, checked, setState) => {
-  //   setState((questions) => {
-  //     return !checked
-  //       ? questions.filter((x) => x !== name)
-  //       : [...questions, name];
-  //   });
-  // };
+
   useEffect(() => {
     getQuestionsPerCategory();
   }, [toggleQuestion]);
@@ -97,8 +96,14 @@ export const CandidateInfo = ({ candidates, setSelectedQuestions }) => {
                     />
                   ))}
                 </div>
-                <button onClick={() => setDisplayQuestions(true)}>
-                  {" "}
+                <p className={s.errorMessage}>{message}</p>
+                <button
+                  onClick={() =>
+                    selectedCategories.length !== 0
+                      ? (setDisplayQuestions(true), setMessage(""))
+                      : setMessage("Select at least one technology")
+                  }
+                >
                   Display questions
                 </button>
               </>
@@ -116,7 +121,16 @@ export const CandidateInfo = ({ candidates, setSelectedQuestions }) => {
                     />
                   ))}
                 </div>
-                <button onClick={() => navigate("summary")}>Summary</button>
+                <p className={s.errorMessage}>{message}</p>
+                <button
+                  onClick={() =>
+                    selectedQuestions.length !== 0
+                      ? (navigate("summary"), setMessage(""))
+                      : setMessage("Select at least one question")
+                  }
+                >
+                  Summary
+                </button>
               </>
             )}
           </div>

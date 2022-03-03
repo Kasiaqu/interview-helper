@@ -4,28 +4,45 @@ import { LabelField } from "../../components/LabelField/LabelField";
 import { loginUserWithEmail, registerUserWithEmail } from "../../utils/db";
 import s from "./RegisterOrLoginView.module.css";
 
-export const RegisterOrLoginView = ({ isRegistered }) => {
+export const RegisterOrLoginView = ({
+  isRegistered,
+  currentUser,
+  setCurrentUser,
+}) => {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [messageLogin, setMessageLogin] = useState("");
   const navigate = useNavigate();
 
   const handleSubmitRegister = (e) => {
     e.preventDefault();
     registerUserWithEmail(name, lastName, email, password);
-    setName("");
-    setLastName("");
-    setEmail("");
-    setPassword("");
-    navigate("/panel");
+    currentUser
+      ? navigate("/panel")
+      : (name, lastName, email, password).length < 5
+      ? setMessageLogin("Email or password is to short")
+      : setMessageLogin("Login invalid. Email or password is wrong");
+    if (currentUser) {
+      setName("");
+      setLastName("");
+      setEmail("");
+      setPassword("");
+    }
   };
   const handleSubmitLogin = (e) => {
     e.preventDefault();
     loginUserWithEmail(email, password);
-    setEmail("");
-    setPassword("");
-    navigate("/panel");
+    currentUser
+      ? navigate("/panel")
+      : (email.length, password.length) < 3
+      ? setMessageLogin("Email or password is to short")
+      : setMessageLogin("Login invalid. Email or password is wrong");
+    if (currentUser) {
+      setEmail("");
+      setPassword("");
+    }
   };
   return (
     <div className={s.registerOrLogin}>
@@ -44,6 +61,7 @@ export const RegisterOrLoginView = ({ isRegistered }) => {
             state={password}
             setState={setPassword}
           />
+          <p className={s.errorMessage}>{messageLogin}</p>
           <button type="submit">Login</button>
         </form>
       ) : (
@@ -73,6 +91,7 @@ export const RegisterOrLoginView = ({ isRegistered }) => {
             state={password}
             setState={setPassword}
           />
+          <p className={s.errorMessage}>{messageLogin}</p>
           <button type="submit">Register</button>
         </form>
       )}

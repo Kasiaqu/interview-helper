@@ -27,7 +27,6 @@ function App() {
     logoutUser();
     comeToHomeView();
   };
-  console.log(selectedQuestions);
   const toggleAnswer = (button, name, technology) => {
     const newAnswers = answers.filter((answer) => answer.name !== name);
     setAnswers(newAnswers);
@@ -91,42 +90,55 @@ function App() {
           />
           <Route
             path="login"
-            element={<RegisterOrLoginView isRegistered={isRegistered} />}
-          />
-          <Route
-            path="panel"
             element={
-              <RecruiterPanelView
-                candidates={candidates}
-                setCandidates={setCandidates}
+              <RegisterOrLoginView
+                isRegistered={isRegistered}
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
               />
             }
           />
-          <Route path="addcandidate" element={<AddCandidateView />} />
-          <Route
-            path="panel/user/:candidateId"
-            element={<CandidateInfo candidates={candidates} />}
-          />
-          <Route
-            path="panel/user/:candidateId/summary"
-            element={
-              <CandidateSummary toggleAnswer={toggleAnswer} answers={answers} />
-            }
-          />
-          <Route
-            path="panel/user/:candidateId/summary/finish"
-            element={
-              <CandidateFinish
-                answers={answers}
-                badAnswers={badAnswers}
-                notUnderstandAnswers={notUnderstandAnswers}
-                goodAnswers={goodAnswers}
-                veryGoodAnswers={veryGoodAnswers}
-                getTechnologies={getTechnologies}
-                setAnswers={setAnswers}
+          {currentUser && (
+            <>
+              <Route
+                path="panel"
+                element={
+                  <RecruiterPanelView
+                    candidates={candidates}
+                    setCandidates={setCandidates}
+                  />
+                }
               />
-            }
-          />
+              <Route path="addcandidate" element={<AddCandidateView />} />
+              <Route
+                path="panel/user/:candidateId"
+                element={<CandidateInfo candidates={candidates} />}
+              />
+              <Route
+                path="panel/user/:candidateId/summary"
+                element={
+                  <CandidateSummary
+                    toggleAnswer={toggleAnswer}
+                    answers={answers}
+                  />
+                }
+              />
+              <Route
+                path="panel/user/:candidateId/summary/finish"
+                element={
+                  <CandidateFinish
+                    answers={answers}
+                    badAnswers={badAnswers}
+                    notUnderstandAnswers={notUnderstandAnswers}
+                    goodAnswers={goodAnswers}
+                    veryGoodAnswers={veryGoodAnswers}
+                    getTechnologies={getTechnologies}
+                    setAnswers={setAnswers}
+                  />
+                }
+              />
+            </>
+          )}
         </Routes>
       </div>
     </selectedQuestionsContext.Provider>

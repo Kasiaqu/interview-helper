@@ -1,5 +1,4 @@
-import { useContext, useEffect } from "react";
-import { selectedQuestionsContext } from "../../contexts/SelectedQuestionsContext";
+import { useEffect } from "react";
 import s from "../CandidateSummaryQuestion/CandidateSummaryQuestion.module.css";
 
 export const AnswerButton = ({

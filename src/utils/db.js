@@ -39,9 +39,7 @@ const registerUserWithEmail = async (name, lastName, email, password) => {
 };
 
 const loginUserWithEmail = async (email, password) => {
-  await signInWithEmailAndPassword(auth, email, password)
-    .then((response) => console.log(response))
-    .catch((error) => console.log(error));
+  await signInWithEmailAndPassword(auth, email, password);
 };
 
 const logoutUser = () => {

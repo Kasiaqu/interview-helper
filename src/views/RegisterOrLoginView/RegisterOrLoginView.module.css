@@ -32,4 +32,10 @@
 .form h2 {
   padding: 0 80px;
   color: var(--header);
+  font-size: var(--fontSizeH2);
+}
+.errorMessage {
+  display: inline-block;
+  height: 1rem;
+  color: var(--textError);
 }

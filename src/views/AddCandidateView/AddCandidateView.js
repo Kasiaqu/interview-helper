@@ -11,23 +11,31 @@ export const AddCandidateView = () => {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [bio, setBio] = useState("");
-  const [dateOfBirth, setDateOfBirth] = useState(0);
-  const [hobbies, setHobbies] = useState([]);
-  const [projects, setProjects] = useState([]);
+  const [dateOfBirth, setDateOfBirth] = useState(1990);
+  const [hobbies, setHobbies] = useState("");
+  const [projects, setProjects] = useState("");
   const [skills, setSkills] = useState([]);
   const [questionsList, setQuestionsList] = useState([]);
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    addCandidate(name, lastName, dateOfBirth, bio, skills, projects, hobbies);
-    setName("");
-    setLastName("");
-    setDateOfBirth("");
-    setBio("");
-    setSkills([]);
-    setHobbies("");
-    setProjects("");
-    navigate("/panel");
+    if (
+      ((name, lastName, dateOfBirth, bio, hobbies, projects).length > 3,
+      skills.length !== 0)
+    ) {
+      addCandidate(name, lastName, dateOfBirth, bio, skills, projects, hobbies);
+      setName("");
+      setLastName("");
+      setDateOfBirth("");
+      setBio("");
+      setSkills([]);
+      setHobbies("");
+      setProjects("");
+      navigate("/panel");
+    } else {
+      setMessage("Fill in all fields.");
+    }
   };
 
   useEffect(() => getQuestions(setQuestionsList), []);
@@ -80,6 +88,7 @@ export const AddCandidateView = () => {
             ))}
           </div>
         </div>
+        <p>{message}</p>
         <button type="submit">Add candidate</button>
       </form>
       <ButtonCandidatesList />

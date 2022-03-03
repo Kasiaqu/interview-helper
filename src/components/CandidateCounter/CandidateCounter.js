@@ -1,5 +1,4 @@
-import { BrowserRouter, Route, useNavigate } from "react-router-dom";
-import { CandidateInfo } from "../CandidateInfo/CandidateInfo";
+import { useNavigate } from "react-router-dom";
 import s from "./CandidateCounter.module.css";
 export const CandidateCounter = ({ candidate }) => {
   const navigate = useNavigate();

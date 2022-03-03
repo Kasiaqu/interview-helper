@@ -6,6 +6,7 @@
   align-items: center;
 }
 .summaryCounter {
+  height: 80vh;
   width: 80vw;
   padding: var(--candidatePadding);
   background-color: var(--background);
@@ -19,9 +20,14 @@
 }
 .summaryCounter > button {
   width: 20rem;
-  margin-top: 5rem;
+  margin-top: 2rem;
 }
 .questionCounter {
   margin: 2rem 0;
   width: 100%;
+}
+.errorMessage {
+  display: inline-block;
+  height: 1rem;
+  color: var(--textError);
 }

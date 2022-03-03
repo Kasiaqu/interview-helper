@@ -25,7 +25,7 @@ and next
 npm start
 ```
 
-or you can go to link [Interview Helper Page]('https://interview-helper-ih.web.app')
+or you can go to link [Interview Helper Page](https://interview-helper-ih.web.app/)
 
 ## Views
 

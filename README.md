@@ -25,6 +25,8 @@ and next
 npm start
 ```
 
+or you can go to link [Interview Helper Page]('https://interview-helper-ih.web.app')
+
 ## Views
 
 After logging in you can see the list of candidates.

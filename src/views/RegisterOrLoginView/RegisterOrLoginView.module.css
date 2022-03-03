@@ -12,25 +12,25 @@
   justify-content: center;
   align-items: center;
   width: 50%;
-  height: 60%;
+  height: 85%;
   background-color: var(--background);
   opacity: 0.9;
-  border-radius: 20px;
+  border-radius: var(--fieldBorderRadius);
 }
 .form label {
-  width: 320px;
+  width: 32rem;
   margin: 0;
 }
 .form input {
-  width: 300px;
+  width: 30rem;
   display: flex;
 }
 .form button {
-  width: 100px;
-  margin-top: 15px;
+  width: 10rem;
+  margin-top: 1rem;
 }
 .form h2 {
-  padding: 0 80px;
+  padding: 0 8rem;
   color: var(--header);
   font-size: var(--fontSizeH2);
 }

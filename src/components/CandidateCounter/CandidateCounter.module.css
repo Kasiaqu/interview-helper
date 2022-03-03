@@ -7,8 +7,16 @@
 .candidateName {
   width: 35%;
 }
+
+.candidateName > p {
+  font-weight: bold;
+  color: var(--textLight);
+}
 .candidateSkills {
   width: 50%;
+}
+.candidateSkills > p {
+  color: var(--textLight);
 }
 .candidateCounter > button {
   width: 15%;

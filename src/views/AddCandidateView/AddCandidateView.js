@@ -20,10 +20,16 @@ export const AddCandidateView = () => {
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (
-      ((name, lastName, dateOfBirth, bio, hobbies, projects).length > 3,
-      skills.length !== 0)
-    ) {
+    const candidateDate = [
+      name,
+      lastName,
+      bio,
+      dateOfBirth,
+      hobbies,
+      projects,
+      skills.length,
+    ];
+    if (candidateDate.every(Boolean)) {
       addCandidate(name, lastName, dateOfBirth, bio, skills, projects, hobbies);
       setName("");
       setLastName("");

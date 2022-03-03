@@ -74,12 +74,14 @@ export const CandidateInfo = ({ candidates }) => {
                   <p>Hobbies:</p>
                   <p> {candidate.hobbies}</p>
                 </div>
-                <button onClick={() => handleDelete(candidate.id)}>
-                  Delete candidate
-                </button>
-                <button onClick={() => displayingSkills(candidate.skills)}>
-                  Start interview
-                </button>
+                <div className={s.buttonCounter}>
+                  <button onClick={() => handleDelete(candidate.id)}>
+                    Delete candidate
+                  </button>
+                  <button onClick={() => displayingSkills(candidate.skills)}>
+                    Start interview
+                  </button>
+                </div>
               </div>
             ) : null
           )}

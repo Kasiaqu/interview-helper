@@ -27,7 +27,6 @@ export const AnswersPerTechnologyCounter = ({ technology, answers }) => {
     ];
     return sortedArray.sort((n1, n2) => n2[0].length - n1[0].length);
   };
-  console.log(technologyAnswers);
   return (
     <div className={s.answersPerTechnologyCounter}>
       <h3>Technology: {technology[0].technology}</h3>

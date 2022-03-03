@@ -94,7 +94,6 @@ function App() {
               <RegisterOrLoginView
                 isRegistered={isRegistered}
                 currentUser={currentUser}
-                setCurrentUser={setCurrentUser}
               />
             }
           />

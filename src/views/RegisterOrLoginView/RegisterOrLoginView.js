@@ -1,14 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LabelField } from "../../components/LabelField/LabelField";
 import { loginUserWithEmail, registerUserWithEmail } from "../../utils/db";
 import s from "./RegisterOrLoginView.module.css";
 
-export const RegisterOrLoginView = ({
-  isRegistered,
-  currentUser,
-  setCurrentUser,
-}) => {
+export const RegisterOrLoginView = ({ isRegistered, currentUser }) => {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -16,34 +12,33 @@ export const RegisterOrLoginView = ({
   const [messageLogin, setMessageLogin] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmitRegister = (e) => {
+  const handleSubmitRegister = async (e) => {
     e.preventDefault();
-    registerUserWithEmail(name, lastName, email, password);
-    currentUser
-      ? navigate("/panel")
-      : (name, lastName, email, password).length < 5
-      ? setMessageLogin("Email or password is to short")
-      : setMessageLogin("Login invalid. Email or password is wrong");
+    await registerUserWithEmail(name, lastName, email, password);
+    navigate("/panel");
     if (currentUser) {
       setName("");
       setLastName("");
       setEmail("");
       setPassword("");
     }
-  };
-  const handleSubmitLogin = (e) => {
-    e.preventDefault();
-    loginUserWithEmail(email, password);
-    currentUser
-      ? navigate("/panel")
-      : (email.length, password.length) < 3
+    !currentUser && (name, lastName, email, password).length < 5
       ? setMessageLogin("Email or password is to short")
       : setMessageLogin("Login invalid. Email or password is wrong");
+  };
+  const handleSubmitLogin = async (e) => {
+    e.preventDefault();
+    await loginUserWithEmail(email, password);
+    navigate("/panel");
     if (currentUser) {
       setEmail("");
       setPassword("");
     }
+    !currentUser && (email.length, password.length) < 3
+      ? setMessageLogin("Email or password is to short")
+      : setMessageLogin("Login invalid. Email or password is wrong");
   };
+
   return (
     <div className={s.registerOrLogin}>
       {isRegistered ? (

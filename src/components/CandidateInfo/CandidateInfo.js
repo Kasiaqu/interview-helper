@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getQuestions } from "../../utils/db";
+import { deleteCandidate, getQuestions } from "../../utils/db";
 import { QuestionCounter } from "../QuestionCounter/QuestionCounter";
 import { TechnologySelect } from "../TechnologySelect/TechnologySelect";
 import { ButtonCandidatesList } from "../ButtonCandidatesList/ButtonCandidatesList";
@@ -32,7 +32,10 @@ export const CandidateInfo = ({ candidates }) => {
     );
     return questionsPerCategory;
   };
-
+  const handleDelete = (candidate) => {
+    deleteCandidate(candidate);
+    navigate("/panel");
+  };
   useEffect(() => {
     getQuestionsPerCategory();
   }, [toggleQuestion]);
@@ -71,6 +74,9 @@ export const CandidateInfo = ({ candidates }) => {
                   <p>Hobbies:</p>
                   <p> {candidate.hobbies}</p>
                 </div>
+                <button onClick={() => handleDelete(candidate.id)}>
+                  Delete candidate
+                </button>
                 <button onClick={() => displayingSkills(candidate.skills)}>
                   Start interview
                 </button>

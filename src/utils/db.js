@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import {
   addDoc,
   collection,
+  deleteDoc,
   doc,
   getDocs,
   getFirestore,
@@ -92,6 +93,10 @@ const addCandidate = async (
   });
 };
 
+const deleteCandidate = async (candidateId) => {
+  await deleteDoc(doc(db, "candidates", candidateId));
+  getCandidates();
+};
 export {
   db,
   auth,
@@ -101,4 +106,5 @@ export {
   getCandidates,
   getQuestions,
   addCandidate,
+  deleteCandidate,
 };

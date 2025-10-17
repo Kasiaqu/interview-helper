@@ -8,8 +8,8 @@ export const HomeView = ({ setIsRegistered, currentUser }) => {
       <div className={s.info}>
         <h1>Interview Helper!</h1>
         <p>
-          The first web, that help you with recruitment process. Add your
-          candidate to the base and chose what questions will you ask him.
+          The first website to help you with your recruitment process. Add your
+          candidate to the database and choose the questions you ask him.
         </p>
 
         {currentUser ? (

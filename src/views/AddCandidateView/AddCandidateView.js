@@ -4,7 +4,7 @@ import { ButtonCandidatesList } from "../../components/ButtonCandidatesList/Butt
 import { LabelField } from "../../components/LabelField/LabelField";
 import { TechnologySelect } from "../../components/TechnologySelect/TechnologySelect";
 import { TextAreaField } from "../../components/TextAreaField/TextAreaField";
-import { addCandidate, getCandidates, getQuestions } from "../../utils/db";
+import { addCandidate, getQuestions } from "../../utils/db";
 import { toggleQuestion } from "../../utils/functions";
 import s from "./AddCandidateView.module.css";
 export const AddCandidateView = () => {

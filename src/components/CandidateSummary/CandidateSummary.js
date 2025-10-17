@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { selectedQuestionsContext } from "../../contexts/SelectedQuestionsContext";
 import { ButtonCandidatesList } from "../ButtonCandidatesList/ButtonCandidatesList";
 import { CandidateSummaryQuestion } from "../CandidateSummaryQuestion/CandidateSummaryQuestion";

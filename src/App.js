@@ -1,5 +1,5 @@
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
-import { useEffect, useMemo, useState } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { HomeView } from "./views/HomeView/HomeView";
 import { RegisterOrLoginView } from "./views/RegisterOrLoginView/RegisterOrLoginView";
 import { RecruiterPanelView } from "./views/RecruiterPanelView/RecruiterPanelView";
@@ -70,7 +70,7 @@ function App() {
       <div className={s.app}>
         <div className={s.navBar}>
           <div className={s.navBarLogo} onClick={() => comeToHomeView()}>
-            <img src={logo} height="100%" />
+            <img src={logo} height="100%" alt="" />
             <h1>Interview Helper</h1>
           </div>
 

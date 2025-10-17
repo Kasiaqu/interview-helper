@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { CandidateCounter } from "../../components/CandidateCounter/CandidateCounter";
 import { SearchBar } from "../../components/SearchBar/SearchBar";
 import { getCandidates } from "../../utils/db";

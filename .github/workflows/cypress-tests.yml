@@ -1,0 +1,43 @@
+name: Cypress Tests
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+    branches:
+      - "**"
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+
+    env:
+      CYPRESS_BASE_URL: http://localhost:3000
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Set production baseUrl
+        if: github.ref == 'refs/heads/master'
+        run: echo "CYPRESS_BASE_URL=https://interview-helper-ih.web.app/" >> $GITHUB_ENV
+
+      - name: Start local app
+        if: github.ref != 'refs/heads/master'
+        run: |
+          npm run start &
+          npx wait-on http://localhost:3000
+
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome

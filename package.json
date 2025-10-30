@@ -35,11 +35,9 @@
         "env": {
           "cypress/globals": true
         }
-      
       }
     ]
   },
-  
   "browserslist": {
     "production": [
       ">0.2%",
@@ -55,6 +53,6 @@
   "devDependencies": {
     "cypress": "^15.5.0",
     "eslint": "^9.38.0",
-    "eslint-plugin-cypress": "^5.2.0"
+    "eslint-plugin-cypress": "^4.0.0"
   }
 }

@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CYPRESS_BASE_URL: http://localhost:5000
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -27,14 +28,12 @@ jobs:
         env:
           CI: false
 
-      - name: Serve built app locally
-        run: |
-          npx serve -s build -l 5000 &
-          npx wait-on http://localhost:5000
-
-      - name: Run Cypress tests (staging build)
+      - name: Run Cypress tests on built app
         uses: cypress-io/github-action@v6
         with:
+          start: npx serve -s build -l ${{ env.CYPRESS_BASE_URL##*: }}
+          wait-on: ${{ env.CYPRESS_BASE_URL }}
+          wait-on-timeout: 60
           browser: chrome
           install: false
 

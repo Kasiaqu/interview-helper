@@ -1,4 +1,4 @@
-name: Deploy React App to Firebase Hosting
+name: Build, Test and Deploy
 
 on:
   push:
@@ -6,14 +6,46 @@ on:
       - master
 
 jobs:
-  build_and_deploy:
+  build_and_test:
     runs-on: ubuntu-latest
-
+    env:
+      CYPRESS_BASE_URL: http://localhost:5000
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build React app
+        run: npm run build
+        env:
+          CI: false
+
+      - name: Serve built app locally
+        run: |
+          npx serve -s build -l 5000 &
+          npx wait-on http://localhost:5000
+
+      - name: Run Cypress tests (staging build)
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
+          install: false
+
+  deploy:
+    needs: build_and_test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
@@ -33,7 +65,8 @@ jobs:
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 
-      - name: Test live production
+      - name: (Optional) Run Cypress tests on live production
+        if: success()
         uses: cypress-io/github-action@v6
         with:
           browser: chrome

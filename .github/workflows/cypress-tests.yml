@@ -1,9 +1,9 @@
-name: Cypress Tests Dev
+name: Cypress Tests (Push & PR)
 
 on:
   push:
-    branches:
-      - "**"
+    branches-ignore:
+      - master
   pull_request:
     branches:
       - "**"
@@ -25,20 +25,15 @@ jobs:
           node-version: 20
           cache: "npm"
 
-      - name: Clean npm cache
-        run: |
-          rm -rf node_modules/.cache
-          npm cache clean --force
-
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-      - name: Start local app
+      - name: Start local dev server
         run: |
           npm run start &
           npx wait-on http://localhost:3000
 
-      - name: Run Cypress tests
+      - name: Run Cypress tests (dev)
         uses: cypress-io/github-action@v6
         with:
           browser: chrome

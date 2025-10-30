@@ -32,3 +32,11 @@ jobs:
           args: deploy --only hosting
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
+      - name: Test live production
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
+          install: false
+        env:
+          CYPRESS_BASE_URL: https://interview-helper-ih.web.app/

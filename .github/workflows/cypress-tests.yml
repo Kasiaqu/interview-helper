@@ -1,4 +1,4 @@
-name: Cypress Tests
+name: Cypress Tests Dev
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
       CYPRESS_BASE_URL: http://localhost:3000
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -33,12 +33,7 @@ jobs:
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-      - name: Set production baseUrl
-        if: github.ref == 'refs/heads/master'
-        run: echo "CYPRESS_BASE_URL=https://interview-helper-ih.web.app/" >> $GITHUB_ENV
-
       - name: Start local app
-        if: github.ref != 'refs/heads/master'
         run: |
           npm run start &
           npx wait-on http://localhost:3000

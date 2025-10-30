@@ -9,8 +9,8 @@ jobs:
   build_and_test:
     runs-on: ubuntu-latest
     env:
-      CYPRESS_PORT: 5001
-      CYPRESS_BASE_URL: http://localhost:5001
+      CYPRESS_PORT: 5000
+      CYPRESS_BASE_URL: http://localhost:5000
 
     steps:
       - name: Checkout repository
@@ -32,15 +32,21 @@ jobs:
       - name: Serve built app locally
         run: |
           npx serve -s build -l $CYPRESS_PORT &
+          echo $! > server.pid
           npx wait-on $CYPRESS_BASE_URL
 
-      - name: Run Cypress tests (staging build)
+      - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
           browser: chrome
           install: false
         env:
           CYPRESS_BASE_URL: ${{ env.CYPRESS_BASE_URL }}
+
+      - name: Kill local server
+        if: always()
+        run: |
+          kill $(cat server.pid) || true
 
   deploy:
     needs: build_and_test

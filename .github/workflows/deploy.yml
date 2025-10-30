@@ -9,8 +9,7 @@ jobs:
   build_and_test:
     runs-on: ubuntu-latest
     env:
-      CYPRESS_BASE_URL: http://localhost:5000
-      CYPRESS_PORT: 5000
+      CYPRESS_BASE_URL: http://localhost:0
 
     steps:
       - name: Checkout repository
@@ -29,14 +28,10 @@ jobs:
         env:
           CI: false
 
-      - name: Kill existing serve processes
-        run: |
-          npx kill-port 5000 || true
-
       - name: Run Cypress tests on built app
         uses: cypress-io/github-action@v6
         with:
-          start: npx serve -s build -l ${{ env.CYPRESS_PORT }}
+          start: npx serve -s build -l 0
           wait-on: ${{ env.CYPRESS_BASE_URL }}
           wait-on-timeout: 60
           browser: chrome

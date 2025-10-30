@@ -1,0 +1,45 @@
+name: Cypress Tests Dev
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+    branches:
+      - "**"
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+
+    env:
+      CYPRESS_BASE_URL: http://localhost:3000
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: Clean npm cache
+        run: |
+          rm -rf node_modules/.cache
+          npm cache clean --force
+
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Start local app
+        run: |
+          npm run start &
+          npx wait-on http://localhost:3000
+
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
+          install: false

@@ -29,18 +29,23 @@ jobs:
         env:
           CI: false
 
-      - name: Run Cypress tests on built app
+      - name: Serve built app locally
+        run: |
+          npx serve -s build -l $CYPRESS_PORT &
+          npx wait-on $CYPRESS_BASE_URL
+
+      - name: Run Cypress tests (staging build)
         uses: cypress-io/github-action@v6
         with:
-          start: npx serve -s build -l ${{ env.CYPRESS_PORT }}
-          wait-on: ${{ env.CYPRESS_BASE_URL }}
-          wait-on-timeout: 90
           browser: chrome
           install: false
+        env:
+          CYPRESS_BASE_URL: ${{ env.CYPRESS_BASE_URL }}
 
   deploy:
     needs: build_and_test
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -65,7 +70,7 @@ jobs:
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 
-      - name: Run Cypress tests on live production (optional)
+      - name: Run Cypress tests on live production
         if: success()
         uses: cypress-io/github-action@v6
         with:

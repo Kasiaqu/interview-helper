@@ -19,7 +19,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 18.18.2
 
       - name: Install dependencies
         run: npm ci
@@ -31,7 +31,7 @@ jobs:
 
       - name: Serve built app locally
         run: |
-          npx kill-port 5000 || true
+          npx kill-port $CYPRESS_PORT || true
           npx serve -s build -l $CYPRESS_PORT &
           echo $! > server.pid
           npx wait-on $CYPRESS_BASE_URL

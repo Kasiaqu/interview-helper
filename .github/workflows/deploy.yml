@@ -31,17 +31,13 @@ jobs:
 
       - name: Serve built app locally
         run: |
+          npx kill-port 5000 || true
           npx serve -s build -l $CYPRESS_PORT &
           echo $! > server.pid
           npx wait-on $CYPRESS_BASE_URL
 
       - name: Run Cypress tests
-        uses: cypress-io/github-action@v6
-        with:
-          browser: chrome
-          install: false
-        env:
-          CYPRESS_BASE_URL: ${{ env.CYPRESS_BASE_URL }}
+        run: npx cypress run --browser chrome --config baseUrl=$CYPRESS_BASE_URL
 
       - name: Kill local server
         if: always()

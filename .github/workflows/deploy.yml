@@ -29,6 +29,10 @@ jobs:
         env:
           CI: false
 
+      - name: Kill existing serve processes
+        run: |
+          npx kill-port 5000 || true
+
       - name: Run Cypress tests on built app
         uses: cypress-io/github-action@v6
         with:

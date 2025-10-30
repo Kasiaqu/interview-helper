@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      CYPRESS_BASE_URL: http://localhost:3000
+      CYPRESS_BASE_URL: http://localhost:3000 # test2
 
     steps:
       - name: Checkout repository

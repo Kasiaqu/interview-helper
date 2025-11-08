@@ -14,8 +14,6 @@ jobs:
   deploy:
     needs: run-cypress-tests
     runs-on: ubuntu-latest
-    env:
-      CYPRESS_PORT: 3000
 
     steps:
       - name: Checkout repository
@@ -48,8 +46,4 @@ jobs:
           browser: chrome
           install: false
         env:
-          CYPRESS_BASE_URL: https://interview-helper-ih.web.app/
-
-      - name: Cleanup Cypress port
-        if: always()
-        run: npx kill-port ${{ env.CYPRESS_PORT }} || true
+          BASE_URL: https://interview-helper-ih.web.app/

@@ -28,11 +28,10 @@ jobs:
         env:
           CI: false
 
-      - name: Start app in background
-        run: npm run preview &
-
-      - name: Wait for server
-        run: npx wait-on ${{ env.BASE_URL }}
+      - name: Start local dev server
+        run: |
+          npm run start &
+          npx wait-on ${{ env.BASE_URL }}
 
       - name: Run Cypress tests
         run: npx cypress run --browser chrome --config baseUrl=${{ env.BASE_URL }}

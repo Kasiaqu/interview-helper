@@ -9,8 +9,7 @@ jobs:
   build_and_test:
     runs-on: ubuntu-latest
     env:
-      CYPRESS_PORT: 5173
-      CYPRESS_BASE_URL: http://localhost:5173
+      BASE_URL: http://localhost:5173
 
     steps:
       - name: Checkout repository
@@ -39,7 +38,7 @@ jobs:
       #     npx wait-on ${{ env.CYPRESS_BASE_URL }} -t 90000
 
       - name: Run Cypress tests
-        run: npx cypress run --browser chrome --config baseUrl=${{ env.CYPRESS_BASE_URL }}
+        run: npx cypress run --browser chrome --config baseUrl=${{ env.BASE_URL }}
 
       # - name: Kill local server
       #   if: always()

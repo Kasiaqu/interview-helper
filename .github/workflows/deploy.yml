@@ -46,4 +46,4 @@ jobs:
           browser: chrome
           install: false
         env:
-          BASE_URL: https://interview-helper-ih.web.app/
+          CYPRESS_BASE_URL: https://interview-helper-ih.web.app/

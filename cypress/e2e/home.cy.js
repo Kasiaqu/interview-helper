@@ -1,8 +1,6 @@
-const baseUrl = Cypress.env("BASE_URL") || "http://localhost:3000";
-
 describe("Main webpage", () => {
   beforeEach(() => {
-    cy.visit(baseUrl);
+    cy.visit("/");
 
     cy.contains("h1", "Interview Helper").should("be.visible");
   });

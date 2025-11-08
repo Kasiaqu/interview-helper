@@ -9,7 +9,7 @@ jobs:
   build_and_test:
     runs-on: ubuntu-latest
     env:
-      BASE_URL: http://localhost:5173
+      BASE_URL: http://localhost:3000
 
     steps:
       - name: Checkout repository
@@ -28,28 +28,20 @@ jobs:
         env:
           CI: false
 
-      # - name: Kill any process on Cypress port
-      #   run: npx kill-port ${{ env.CYPRESS_PORT }} || true
+      - name: Start app in background
+        run: npm run preview &
 
-      # - name: Serve built app locally
-      #   run: |
-      #     npx serve -s build -l ${{ env.CYPRESS_PORT }} &
-      #     # echo $! > server.pid
-      #     npx wait-on ${{ env.CYPRESS_BASE_URL }} -t 90000
+      - name: Wait for server
+        run: npx wait-on ${{ env.BASE_URL }}
 
       - name: Run Cypress tests
         run: npx cypress run --browser chrome --config baseUrl=${{ env.BASE_URL }}
-
-      # - name: Kill local server
-      #   if: always()
-      #   run: |
-      #     kill $(cat server.pid) || true
 
   deploy:
     needs: build_and_test
     runs-on: ubuntu-latest
     env:
-      CYPRESS_PORT: 5173
+      CYPRESS_PORT: 3000
 
     steps:
       - name: Checkout repository

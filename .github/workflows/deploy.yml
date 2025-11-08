@@ -6,35 +6,10 @@ on:
       - master
 
 jobs:
-  build_and_test:
-    runs-on: ubuntu-latest
-    env:
-      BASE_URL: http://localhost:3000
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18.18.2
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build React app
-        run: npm run build
-        env:
-          CI: false
-
-      - name: Start local dev server
-        run: |
-          npm run start &
-          npx wait-on ${{ env.BASE_URL }}
-
-      - name: Run Cypress tests
-        run: npx cypress run --browser chrome --config baseUrl=${{ env.BASE_URL }}
+  run-cypress-tests:
+    uses: ./.github/workflows/cypress-tests.yml
+    with:
+      base_url: "http://localhost:3000"
 
   deploy:
     needs: build_and_test

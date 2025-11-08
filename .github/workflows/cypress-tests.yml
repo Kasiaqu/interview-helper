@@ -7,9 +7,16 @@ on:
   pull_request:
     branches:
       - "**"
+  workflow_call:
+    inputs:
+      base_url:
+        description: "Base url for react app"
+        required: false
+        default: "http://localhost:3000"
+        type: string
 
 jobs:
-  cypress-run:
+  run-cypress-tests:
     concurrency:
       group: cypress-${{ github.ref }}
       cancel-in-progress: true
@@ -17,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      CYPRESS_BASE_URL: http://localhost:3000 # test3
+      BASE_URL: ${{ inputs.base_url || "http://localhost:3000" }}
 
     steps:
       - name: Checkout repository
@@ -35,7 +42,7 @@ jobs:
       - name: Start local dev server
         run: |
           npm run start &
-          npx wait-on http://localhost:3000
+          npx wait-on ${{ env.BASE_URL }}
 
       - name: Run Cypress tests (dev)
         uses: cypress-io/github-action@v6

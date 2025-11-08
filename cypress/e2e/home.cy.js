@@ -8,7 +8,7 @@ describe("Main webpage", () => {
   });
 
   describe("Login flow", () => {
-    before(function () {
+    beforeEach(function () {
       cy.fixture("example").as("testData");
     });
 

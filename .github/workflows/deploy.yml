@@ -12,7 +12,7 @@ jobs:
       base_url: "http://localhost:3000"
 
   deploy:
-    needs: build_and_test
+    needs: run-cypress-tests
     runs-on: ubuntu-latest
     env:
       CYPRESS_PORT: 3000

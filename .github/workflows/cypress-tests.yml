@@ -1,4 +1,4 @@
-name: Cypress Tests (Push & PR)
+name: Cypress Tests
 
 on:
   push:
@@ -35,7 +35,7 @@ jobs:
           cache: "npm"
 
       - name: Install dependencies
-        run: npm install --legacy-peer-deps
+        run: npm ci
 
       - name: Start local dev server
         run: |

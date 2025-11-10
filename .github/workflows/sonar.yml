@@ -4,6 +4,9 @@ on:
   pull_request:
     branches:
       - "**"
+  push:
+    branches:
+      - master
 
 jobs:
   sonarcloud:
@@ -41,6 +44,7 @@ jobs:
             -Dsonar.tests=src
             -Dsonar.test.inclusions=**/*.test.*
             -Dsonar.verbose=true
+            -Dsonar.analysis.mode=publish
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 

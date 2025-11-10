@@ -2,7 +2,7 @@ import s from "./SearchBar.module.css";
 
 export const SearchBar = ({ searchName, setSearchName }) => {
   return (
-    <label className={s.label}>
+    <label className={s.label} aria-label="Search candidate">
       <input
         className={s.input}
         value={searchName}

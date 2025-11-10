@@ -27,7 +27,7 @@ html {
   min-height: 600px;
 }
 body {
-  font-family: "Karla", "sans-serif";
+  font-family: "Karla", sans-serif;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -86,9 +86,7 @@ body {
 }
 button {
   position: relative;
-  /* margin-inline: 5px; */
   padding: 1.5rem;
-  font-size: 2rem;
   font: inherit;
   color: var(--textLight);
   background-color: var(--buttonBackground);

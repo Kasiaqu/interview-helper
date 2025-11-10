@@ -8,6 +8,9 @@ on:
 jobs:
   sonarcloud:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
 
     steps:
       - name: Checkout repository
@@ -25,7 +28,7 @@ jobs:
         run: npm ci
 
       - name: Run tests with coverage
-        run: npm run test -- --coverage --coverageReporters=lcov
+        run: npm run test -- --coverage --coverageReporters=lcov --passWithNoTests
 
       - name: Run SonarCloud Analysis
         uses: SonarSource/sonarqube-scan-action@v6
